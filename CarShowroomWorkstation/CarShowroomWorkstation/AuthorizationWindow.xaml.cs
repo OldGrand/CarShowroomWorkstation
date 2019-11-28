@@ -22,6 +22,22 @@ namespace CarShowroomWorkstation
         public AuthorizationWindow()
         {
             InitializeComponent();
+
+            RegistrationButton.Click += RegistrationButtonClick;
+            LogInButton.Click += LogInButtonClick;
+        }
+
+        private void LogInButtonClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Войти");
+        }
+
+        private void RegistrationButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.ShowDialog();
+            this.Show();
         }
     }
 }

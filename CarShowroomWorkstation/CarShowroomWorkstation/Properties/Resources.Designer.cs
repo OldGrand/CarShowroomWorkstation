@@ -69,5 +69,15 @@ namespace CarShowroomWorkstation.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RegistrationBackGround {
+            get {
+                object obj = ResourceManager.GetObject("RegistrationBackGround", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

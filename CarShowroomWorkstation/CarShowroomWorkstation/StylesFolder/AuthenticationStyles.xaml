@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CarShowroomWorkstation.StylesFolder">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="LabelStyle">
         <Setter Property="Label.FontSize" Value="40" />
         <Setter Property="Label.HorizontalContentAlignment" Value="Center" />

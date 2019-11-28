@@ -1,0 +1,14 @@
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.csprojAssemblyReference.cache
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\App.g.cs
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation_MarkupCompile.cache
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation_MarkupCompile.lref
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\AuthorizationWindow.g.cs
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\CarShowroomWorkstation.exe.config
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\CarShowroomWorkstation.exe
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\CarShowroomWorkstation.pdb
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\AuthorizationWindow.baml
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.g.resources
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.Properties.Resources.resources
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.csproj.GenerateResource.cache
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.exe
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.pdb

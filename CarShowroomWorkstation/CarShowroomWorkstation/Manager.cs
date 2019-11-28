@@ -20,6 +20,8 @@ namespace CarShowroomWorkstation
             this.Orders = new HashSet<Order>();
         }
     
+        public string Login { get; set; }
+        public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public byte WorkExperience { get; set; }

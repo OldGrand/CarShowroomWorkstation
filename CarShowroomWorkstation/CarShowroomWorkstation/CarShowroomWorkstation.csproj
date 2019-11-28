@@ -85,54 +85,54 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Car.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarShowroomDataModel.cs">
+    <Compile Include="CarShowroomModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarShowroomModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarShowroomModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="CarType.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Client.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modification.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PayType.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TransmissionsType.cs">
-      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CarShowroomDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CarShowroomDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CarShowroomDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -151,21 +151,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="CarShowroomDataModel.edmx">
+    <EntityDeploy Include="CarShowroomModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarShowroomDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CarShowroomModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CarShowroomDataModel.edmx.diagram">
-      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
+    <None Include="App.Config" />
+    <None Include="CarShowroomModel.edmx.diagram">
+      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BackGround.png" />
@@ -185,23 +183,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CarShowroom.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CarShowroomDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CarShowroomDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="CarShowroomDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
-      <LastGenOutput>CarShowroomDataModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="CarShowroom_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>CarShowroom.mdf</DependentUpon>
-    </Content>
     <Resource Include="Resources\RegistrationBackGround.png" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +200,17 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="CarShowroomModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
+      <LastGenOutput>CarShowroomModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CarShowroomModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
+      <LastGenOutput>CarShowroomModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

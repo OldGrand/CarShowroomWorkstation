@@ -3,7 +3,7 @@
     <Style x:Key="LabelStyle">
         <Setter Property="Label.FontSize" Value="40" />
         <Setter Property="Label.HorizontalContentAlignment" Value="Center" />
-        <Setter Property="Label.VerticalContentAlignment" Value="Center" />
+        <Setter Property="Label.VerticalContentAlignment" Value="Bottom" />
     </Style>
 
     <Style x:Key="TextBoxStyle">
@@ -72,7 +72,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="TextBox_Template" TargetType="{x:Type TextBox}">
+    <ControlTemplate x:Key="TextBox_Template" TargetType="{x:Type Control}">
         <Border Style="{StaticResource TB_BorderStyle}">
             <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
         </Border>

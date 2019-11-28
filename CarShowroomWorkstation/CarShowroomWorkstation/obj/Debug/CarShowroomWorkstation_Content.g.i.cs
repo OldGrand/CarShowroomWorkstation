@@ -8,9 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroom.mdf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroomdatamodel.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroomdatamodel.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroom_log.ldf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroommodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroommodel.tt")]
 
 

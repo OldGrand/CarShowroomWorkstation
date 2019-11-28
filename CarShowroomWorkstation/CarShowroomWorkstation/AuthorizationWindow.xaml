@@ -18,20 +18,20 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition ></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="110"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition ></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-
-        <Label x:Name="EmaiLabel" Content="Email" Style="{StaticResource LabelStyle}"/>
+        <Label x:Name="EmaiLabel" Content="Email" Style="{StaticResource LabelStyle}" />
         <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
 
         <Label x:Name="PasswordLabel" Grid.Row="2" Content="Password" Style="{StaticResource LabelStyle}"/>
         <TextBox x:Name="PasswordTextBox" Grid.Row="3" Height="50" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
 
-        <Button x:Name="LogInButton" Grid.Row="5" FontSize="25" Width="150" Content="Войти" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
-        <Button x:Name="RegistrationButton" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="4" FontSize="25" Content="Регистрация" Width="170" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button x:Name="LogInButton" Height="120" Grid.Row="4" FontSize="25" Width="150" Content="Войти" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button x:Name="RegistrationButton" HorizontalAlignment="Right" Height="100" Grid.Column="1" Grid.Row="5" FontSize="25" Content="Регистрация" Width="170" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

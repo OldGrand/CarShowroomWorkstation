@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:CarShowroomWorkstation"
              StartupUri="AuthorizationWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/AuthenticationStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

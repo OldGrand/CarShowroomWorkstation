@@ -12,30 +12,6 @@
         <ImageBrush ImageSource="pack://application:,,,/Resources/BackGround.png"/>
     </Window.Background>
     
-    <Window.Resources>
-        <Style x:Key="LabelStyle">
-            <Setter Property="Label.FontSize" Value="40" />
-            <Setter Property="Label.HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Label.VerticalContentAlignment" Value="Center" />
-        </Style>
-
-        <Style x:Key="TextBoxStyle">
-            <Setter Property="TextBox.FontSize" Value="25" />
-            <Setter Property="TextBox.Foreground" Value="White" />
-            <Setter Property="TextBox.Height" Value="50" />
-            <Setter Property="TextBox.Margin" Value="20 0 20 0" />
-            <Setter Property="TextBox.VerticalAlignment" Value="Top" />
-            <Setter Property="TextBox.CaretBrush" Value="White" />
-            <Setter Property="TextBox.VerticalContentAlignment" Value="Center" />
-        </Style>
-
-        <Style x:Key="TB_BorderStyle">
-            <Setter Property="Border.CornerRadius" Value="12" />
-            <Setter Property="Border.BorderThickness" Value="4" />
-            <Setter Property="Border.BorderBrush" Value="#3F3F46" />
-        </Style>
-    </Window.Resources>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -50,28 +26,12 @@
         </Grid.RowDefinitions>
 
         <Label x:Name="EmaiLabel" Content="Email" Style="{StaticResource LabelStyle}"/>
-        <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}">
-            <TextBox.Template>
-                <ControlTemplate>
-                    <Border Style="{StaticResource TB_BorderStyle}">
-                        <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
-                    </Border>
-                </ControlTemplate>
-            </TextBox.Template>
-        </TextBox>
+        <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
 
         <Label x:Name="PasswordLabel" Grid.Row="2" Content="Password" Style="{StaticResource LabelStyle}"/>
-        <TextBox x:Name="PasswordTextBox" Grid.Row="3" Height="50" Style="{StaticResource TextBoxStyle}">
-            <TextBox.Template>
-                <ControlTemplate>
-                    <Border Style="{StaticResource TB_BorderStyle}">
-                        <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
-                    </Border>
-                </ControlTemplate>
-            </TextBox.Template>
-        </TextBox>
+        <TextBox x:Name="PasswordTextBox" Grid.Row="3" Height="50" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
 
-        <Button x:Name="AcceptButton" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" FontSize="20" Width="150" Content="Войти" />
-        <Button x:Name="RegistrationButton" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" FontSize="20" Width="150" Content="Регистрация" Margin="0 35 0 5"/>
+        <Button x:Name="RegistrationButton" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="4" FontSize="25" Content="Регистрация" Width="170" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button x:Name="AcceptButton"  Grid.Row="5" FontSize="25" Width="150" Content="Войти" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

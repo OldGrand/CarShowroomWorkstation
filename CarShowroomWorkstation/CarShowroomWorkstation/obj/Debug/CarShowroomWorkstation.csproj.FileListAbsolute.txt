@@ -1,7 +1,6 @@
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.csprojAssemblyReference.cache
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\App.g.cs
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation_MarkupCompile.cache
-C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation_MarkupCompile.lref
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\AuthorizationWindow.g.cs
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\CarShowroomWorkstation.exe.config
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\CarShowroomWorkstation.exe

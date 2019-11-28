@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarShowroomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ID_car" />
+    </Key>
+    <Property Name="Mark" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Horsepower" Type="Int32" Nullable="false" />
+    <Property Name="YearOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ID_car" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarTypeFK" Type="Int32" />
+    <NavigationProperty Name="CarType" Relationship="Self.FK_Cars_CarType" FromRole="Cars" ToRole="CarType" />
+    <NavigationProperty Name="Modifications" Relationship="Self.FK_Modifications_Cars" FromRole="Cars" ToRole="Modifications" />
+  </EntityType>
+  <EntityType Name="CarType">
+    <Key>
+      <PropertyRef Name="ID_carType" />
+    </Key>
+    <Property Name="BodyType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_carType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_CarType" FromRole="CarType" ToRole="Cars" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID_client" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PassportNumber" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ID_client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Clients" FromRole="Clients" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="ID_manager" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkExperience" Type="Byte" Nullable="false" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PassportNumber" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ID_manager" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Managers" FromRole="Managers" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Modification">
+    <Key>
+      <PropertyRef Name="ID_modification" />
+    </Key>
+    <Property Name="Color" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EngineVolume" Type="Int32" Nullable="false" />
+    <Property Name="ClimateControl" Type="Byte" Nullable="false" />
+    <Property Name="OnBoardComputer" Type="Byte" Nullable="false" />
+    <Property Name="AudioSystem" Type="Byte" Nullable="false" />
+    <Property Name="ID_modification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrdersFK" Type="Int32" Nullable="false" />
+    <Property Name="CarsFK" Type="Int32" Nullable="false" />
+    <Property Name="TransmissionFK" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Car" Relationship="Self.FK_Modifications_Cars" FromRole="Modifications" ToRole="Cars" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Modifications_Orders1" FromRole="Modifications" ToRole="Orders" />
+    <NavigationProperty Name="TransmissionsType" Relationship="Self.FK_Modifications_TransmissionsType1" FromRole="Modifications" ToRole="TransmissionsType" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID_order" />
+    </Key>
+    <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsDelivering" Type="Byte" Nullable="false" />
+    <Property Name="DateOrderClosing" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LeadTime" Type="DateTime" Precision="0" />
+    <Property Name="ID_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientFK" Type="Int32" Nullable="false" />
+    <Property Name="ManagerFK" Type="Int32" Nullable="false" />
+    <Property Name="PayTypeFK" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK_Orders_Managers" FromRole="Orders" ToRole="Managers" />
+    <NavigationProperty Name="Modifications" Relationship="Self.FK_Modifications_Orders1" FromRole="Orders" ToRole="Modifications" />
+    <NavigationProperty Name="PayType" Relationship="Self.FK_Orders_PayType" FromRole="Orders" ToRole="PayType" />
+  </EntityType>
+  <EntityType Name="PayType">
+    <Key>
+      <PropertyRef Name="ID_payType" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_payType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_PayType" FromRole="PayType" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TransmissionsType">
+    <Key>
+      <PropertyRef Name="ID_transmissionType" />
+    </Key>
+    <Property Name="TransmissionType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_transmissionType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Modifications" Relationship="Self.FK_Modifications_TransmissionsType1" FromRole="TransmissionsType" ToRole="Modifications" />
+  </EntityType>
+  <Association Name="FK_Cars_CarType">
+    <End Role="CarType" Type="Self.CarType" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarType">
+        <PropertyRef Name="ID_carType" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="CarTypeFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modifications_Cars">
+    <End Role="Cars" Type="Self.Car" Multiplicity="1" />
+    <End Role="Modifications" Type="Self.Modification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="ID_car" />
+      </Principal>
+      <Dependent Role="Modifications">
+        <PropertyRef Name="CarsFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Clients">
+    <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="ID_client" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ClientFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Managers">
+    <End Role="Managers" Type="Self.Manager" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managers">
+        <PropertyRef Name="ID_manager" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ManagerFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modifications_Orders1">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="Modifications" Type="Self.Modification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID_order" />
+      </Principal>
+      <Dependent Role="Modifications">
+        <PropertyRef Name="OrdersFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modifications_TransmissionsType1">
+    <End Role="TransmissionsType" Type="Self.TransmissionsType" Multiplicity="1" />
+    <End Role="Modifications" Type="Self.Modification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransmissionsType">
+        <PropertyRef Name="ID_transmissionType" />
+      </Principal>
+      <Dependent Role="Modifications">
+        <PropertyRef Name="TransmissionFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_PayType">
+    <End Role="PayType" Type="Self.PayType" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PayType">
+        <PropertyRef Name="ID_payType" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="PayTypeFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarShowroomEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="CarTypes" EntityType="Self.CarType" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="Modifications" EntityType="Self.Modification" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="PayTypes" EntityType="Self.PayType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TransmissionsTypes" EntityType="Self.TransmissionsType" />
+    <AssociationSet Name="FK_Cars_CarType" Association="Self.FK_Cars_CarType">
+      <End Role="CarType" EntitySet="CarTypes" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modifications_Cars" Association="Self.FK_Modifications_Cars">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Modifications" EntitySet="Modifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Managers" Association="Self.FK_Orders_Managers">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modifications_Orders1" Association="Self.FK_Modifications_Orders1">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Modifications" EntitySet="Modifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modifications_TransmissionsType1" Association="Self.FK_Modifications_TransmissionsType1">
+      <End Role="TransmissionsType" EntitySet="TransmissionsTypes" />
+      <End Role="Modifications" EntitySet="Modifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_PayType" Association="Self.FK_Orders_PayType">
+      <End Role="PayType" EntitySet="PayTypes" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

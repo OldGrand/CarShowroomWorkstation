@@ -3,17 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CarShowroomWorkstation"
         mc:Ignorable="d"
-        Title="AuthorizationWindow" Height="450" Width="800"
+        Title="AuthorizationWindow" Height="450" Width="700"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
+    
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/BackGround.png"/>
     </Window.Background>
+    
+    <Window.Resources>
+        <Style x:Key="LabelStyle">
+            <Setter Property="Label.FontSize" Value="40" />
+            <Setter Property="Label.HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Label.VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle">
+            <Setter Property="TextBox.FontSize" Value="25" />
+            <Setter Property="TextBox.Foreground" Value="White" />
+            <Setter Property="TextBox.Height" Value="50" />
+            <Setter Property="TextBox.Margin" Value="20 0 20 0" />
+            <Setter Property="TextBox.VerticalAlignment" Value="Top" />
+            <Setter Property="TextBox.CaretBrush" Value="White" />
+            <Setter Property="TextBox.VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="TB_BorderStyle">
+            <Setter Property="Border.CornerRadius" Value="12" />
+            <Setter Property="Border.BorderThickness" Value="4" />
+            <Setter Property="Border.BorderBrush" Value="#3F3F46" />
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -25,11 +49,27 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label x:Name="EmaiLabel" FontSize="40" Grid.Column="1" Content="Email" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="EmailTextBox" Background="Azure" Grid.Column="1" Grid.Row="1" Height="50" Language="en-en" SpellCheck.IsEnabled="True" VerticalAlignment="Top" />
+        <Label x:Name="EmaiLabel" Content="Email" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Border Style="{StaticResource TB_BorderStyle}">
+                        <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
 
-        <Label x:Name="PasswordLabel" FontSize="40" Grid.Column="1" Grid.Row="2" Content="Password" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="PasswordTextBox" Background="Azure" Grid.Column="1" Grid.Row="3" Height="50" Language="ru-ru" SpellCheck.IsEnabled="True" VerticalAlignment="Top"/>
+        <Label x:Name="PasswordLabel" Grid.Row="2" Content="Password" Style="{StaticResource LabelStyle}"/>
+        <TextBox x:Name="PasswordTextBox" Grid.Row="3" Height="50" Style="{StaticResource TextBoxStyle}">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Border Style="{StaticResource TB_BorderStyle}">
+                        <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
 
         <Button x:Name="AcceptButton" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" FontSize="20" Width="150" Content="Войти" />
         <Button x:Name="RegistrationButton" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" FontSize="20" Width="150" Content="Регистрация" Margin="0 35 0 5"/>

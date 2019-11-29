@@ -26,3 +26,4 @@ C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroo
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\PersonalDataInputWindow.baml
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary.dll
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary.pdb
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\StylesFolder\TextBoxBorderStyles.baml

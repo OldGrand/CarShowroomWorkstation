@@ -6,6 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/TextBoxBorderStyles.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/AuthenticationStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

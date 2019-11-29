@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ValidationLibrary;
 
 namespace CarShowroomWorkstation
 {
@@ -24,13 +25,30 @@ namespace CarShowroomWorkstation
         {
             InitializeComponent();
 
+            RegistrationButton.IsEnabled = false;
             RegistrationButton.Click += RegistrationButtonClick;
+
+            EmailTextBox.TextChanged += ValidationTextChanged;
+            PasswordTextBox.TextChanged += ValidationTextChanged;
+            ConfirmPasswordTextBox.TextChanged += ValidationTextChanged;
+        }
+
+        private void ValidationTextChanged(object sender, EventArgs e)
+        {
+            if (Validator.EmailValidation(EmailTextBox.Text) && PasswordTextBox.Text != "" && PasswordTextBox.Text.Equals(ConfirmPasswordTextBox.Text))
+            {
+                RegistrationButton.IsEnabled = true;
+            }
+            else
+            {
+                RegistrationButton.IsEnabled = false;
+            }
         }
 
         private void RegistrationButtonClick(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            PersonalDataInputWindow inputWindow = new PersonalDataInputWindow();
+            PersonalDataInputWindow inputWindow = new PersonalDataInputWindow(EmailTextBox.Text, PasswordTextBox.Text);
             inputWindow.Owner = this;
             inputWindow.ShowDialog(); 
         }

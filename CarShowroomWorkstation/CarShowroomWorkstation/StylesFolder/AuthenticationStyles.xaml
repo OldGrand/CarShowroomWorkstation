@@ -85,12 +85,7 @@
         <Setter Property="TextBox.VerticalAlignment" Value="Top" />
         <Setter Property="TextBox.CaretBrush" Value="White" />
         <Setter Property="TextBox.VerticalContentAlignment" Value="Center" />
-    </Style>
-
-    <Style x:Key="TB_BorderStyle">
-        <Setter Property="Border.CornerRadius" Value="12" />
-        <Setter Property="Border.BorderThickness" Value="4" />
-        <Setter Property="Border.BorderBrush" Value="#3F3F46" />
+        <Setter Property="Panel.ZIndex" Value="-10" />
     </Style>
 
     <Style x:Key="ButtonStyle">
@@ -98,9 +93,7 @@
         <Setter Property="Button.Height" Value="45" />
         <Setter Property="Button.Width" Value="180" />
     </Style>
-    <!--Margin="0 0 10 30" MaxHeight="50"
-                                MinWidth="80" Padding="5"-->
-    
+
     <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
         <Border BorderBrush="#333" BorderThickness="1" 
                                 TextBlock.Foreground="#ddd"  Name="myBorder">
@@ -155,4 +148,11 @@
             <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
         </Border>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorTextBox_Template" TargetType="{x:Type Control}">
+        <Border Style="{StaticResource TB_ErrorBorderStyle}">
+            <ScrollViewer x:Name="PART_ContentHost" Background="#3F3F46"/>
+        </Border>
+    </ControlTemplate>
+    
 </ResourceDictionary>

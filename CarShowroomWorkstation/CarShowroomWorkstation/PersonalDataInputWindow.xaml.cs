@@ -21,12 +21,24 @@ namespace CarShowroomWorkstation
     /// </summary>
     public partial class PersonalDataInputWindow : Window
     {
-        public PersonalDataInputWindow()
+        private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
+        private const int _startSalary = 400;
+        private string _email;
+        private string _password;
+
+        public PersonalDataInputWindow(string email, string password)
         {
             InitializeComponent();
-            BirthDatePicker.DisplayDate = DateTime.Now;
-            BirthDatePicker.Text = DateTime.Now.ToString();
-            EndRegistrationButton.IsEnabled = false;
+
+            _email = email;
+            _password = password;
+
+            FinishRegistrationButton.IsEnabled = false;
+            BirthDatePicker.DisplayDateStart = new DateTime(1955, 01, 01);
+            BirthDatePicker.DisplayDateEnd = new DateTime(1999, 01, 01);
+
+            //TODO динамическое изменение цвета рамки
+            NameTextBox.Template = (ControlTemplate)FindResource("ErrorTextBox_Template");
 
             BirthDatePicker.Loaded += delegate
             {
@@ -34,18 +46,61 @@ namespace CarShowroomWorkstation
                 textBox.Background = BirthDatePicker.Background;
                 textBox.Foreground = new SolidColorBrush(Colors.White);
                 textBox.IsEnabled = false;
+                textBox.VerticalAlignment = VerticalAlignment.Center;
             };
+
+            NameTextBox.TextChanged += ValidationTextChanged;
+            SurnameTextBox.TextChanged += ValidationTextChanged;
+            BirthDatePicker.SelectedDateChanged += BirthDatePickerSelectedDateChanged;
+            CancelRegistrationButton.Click += CancelRegistrationButtonClick1;
         }
+
+        private void CancelRegistrationButtonClick1(object sender, RoutedEventArgs e) => Close();
+
+        private void BirthDatePickerSelectedDateChanged(object sender, SelectionChangedEventArgs e) => ValidationTextChanged(null, null);
 
         public void ValidationTextChanged(object sender, EventArgs e)
         {
-            if (ValidationLibrary.Validation.PhoneNumberValidation(PhoneNumTextBox.Text) && ValidationLibrary.Validation.PassportNumValidation(PassportNumTextBox.Text))
+            if (Validator.PhoneNumberValidation(PhoneNumTextBox.Text) && Validator.PassportNumValidation(PassportNumTextBox.Text) 
+                && IsMoreThanNull(WorkExperienceTextBox.Text)
+                && NameTextBox.Text != "" && SurnameTextBox.Text != "" && BirthDatePicker.SelectedDate != null)
             {
-                EndRegistrationButton.IsEnabled = true;
+                FinishRegistrationButton.IsEnabled = true;
             }
             else
             {
-                EndRegistrationButton.IsEnabled = false;
+                FinishRegistrationButton.IsEnabled = false;
+            }
+        }
+
+        private bool IsMoreThanNull(string value)
+        {
+            int result;
+            try
+            {
+                result = Convert.ToInt32(value);
+            }
+            catch
+            {
+                return false;
+            }
+            return (result > 0) ? true : false;
+        }
+
+        private void TextBoxPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void CancelRegistrationButton_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void FinishRegistrationButton_Click(object sender, RoutedEventArgs e)
+        {//TODO дописать регистрацию
+            if (ManagerRadioButton.IsChecked.Value)
+            {
+            }
+            else if (AdminRadioButton.IsChecked.Value)
+            {
             }
         }
     }

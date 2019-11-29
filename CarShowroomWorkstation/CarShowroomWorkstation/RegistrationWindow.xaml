@@ -35,6 +35,6 @@
         <Label x:Name="ConfirmPasswordLabel" Grid.Row="4" Content="Confirm Password" Foreground="White" Style="{StaticResource LabelStyle}"/>
         <TextBox x:Name="ConfirmPasswordTextBox" Grid.Row="5" Height="50" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
 
-        <Button x:Name="RegistrationButton" Height="110" Grid.Row="6" FontSize="25" Width="270" Content="Зарегистрироваться" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button x:Name="RegistrationButton" Width="250" Grid.Row="6" Content="Зарегистрироваться" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

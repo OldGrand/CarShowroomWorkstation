@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="PersonalDataInputWindow" Height="450" Width="700"
         WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Resources/PersonalDataBackGround.png"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -22,25 +25,33 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        <Label x:Name="NameLabel" Style="{StaticResource LabelStyle}" Content="Name"/>
+        <Label x:Name="NameLabel" Foreground="White" Style="{StaticResource LabelStyle}" Content="Name"/>
         <TextBox x:Name="NameTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="SurnameLabel" Grid.Row="2" Style="{StaticResource LabelStyle}" Content="Surname"/>
+        <Label x:Name="SurnameLabel" Foreground="White" Grid.Row="2" Style="{StaticResource LabelStyle}" Content="Surname"/>
         <TextBox x:Name="SurnameTextBox" Grid.Row="3" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="WorkExperienceLabel" Grid.Row="4" Style="{StaticResource LabelStyle}" Content="Experience"/>
+        <Label x:Name="WorkExperienceLabel" Foreground="White" Grid.Row="4" Style="{StaticResource LabelStyle}" Content="Experience"/>
         <TextBox x:Name="WorkExperienceTextBox" Grid.Row="5" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="BirthDateLabel" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Birth Date"/>
-        <DatePicker x:Name="BirthDatePicker" Height="40" Grid.Row="1" Grid.Column="1" FontSize="30" SelectedDateFormat="Short"></DatePicker>
+        <Label x:Name="BirthDateLabel" Foreground="White" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Birth Date"/>
+        <DatePicker x:Name="BirthDatePicker" Background="#3F3F46" Width="300" Height="40" Grid.Row="1" Grid.Column="1" FontSize="30" SelectedDateFormat="Short">
+            <!--<DatePicker.CalendarStyle>
+                <Style TargetType="{x:Type Calendar}">
+                    <Setter Property="FontFamily" Value="Verdana" />
+                    <Setter Property="Background" Value="#eeeeee"/>
+                    <Setter Property="FontSize" Value="25"/>
+                </Style>
+            </DatePicker.CalendarStyle>-->
+        </DatePicker>
 
-        <Label x:Name="PassportNumLabel" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Passport Number"/>
-        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <Label x:Name="PassportNumLabel" Foreground="White" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Passport Number"/>
+        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="PassportnNumTextChanged"/>
 
-        <Label x:Name="PhoneNumLabel" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Phone Number"/>
-        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <Label x:Name="PhoneNumLabel" Foreground="White" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Phone Number"/>
+        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="PhoneNumTextChanged"/>
 
-        <Button x:Name="CancelRegistrationButton" Grid.Row="6" Height="100" Content="Отмена" Template="{Binding Source={StaticResource Button_Template}}"/>
-        <Button x:Name="EndRegistrationButton" Grid.Row="6" Grid.Column="1" Height="100" Content="Завершить регистрацию" Template="{Binding Source={StaticResource Button_Template}}"/>
+        <Button x:Name="CancelRegistrationButton"  Grid.Row="6" Content="Отмена" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}"/>
+        <Button x:Name="EndRegistrationButton" Grid.Row="6" Grid.Column="1" Content="Ok" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}"/>
     </Grid>
 </Window>

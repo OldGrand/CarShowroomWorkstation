@@ -22,10 +22,17 @@
         <Setter Property="Border.BorderBrush" Value="#3F3F46" />
     </Style>
 
+    <Style x:Key="ButtonStyle">
+        <Setter Property="Button.FontSize" Value="25" />
+        <Setter Property="Button.Height" Value="45" />
+        <Setter Property="Button.Width" Value="180" />
+    </Style>
+    <!--Margin="0 0 10 30" MaxHeight="50"
+                                MinWidth="80" Padding="5"-->
+    
     <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
         <Border BorderBrush="#333" BorderThickness="1" 
-                                TextBlock.Foreground="#ddd" Margin="0 0 10 30" MaxHeight="50"
-                                MinWidth="80" Padding="5" Name="myBorder">
+                                TextBlock.Foreground="#ddd"  Name="myBorder">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="#676767" Offset="0"></GradientStop>

@@ -218,6 +218,7 @@
       <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
       <LastGenOutput>CarShowroomDataModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\PersonalDataBackGround.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

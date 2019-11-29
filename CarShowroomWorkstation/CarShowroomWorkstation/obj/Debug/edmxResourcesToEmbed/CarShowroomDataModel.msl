@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CarShowroomModelStoreContainer" CdmEntityContainer="CarShowroomEntities">
     <EntitySetMapping Name="Cars">
-      <EntityTypeMapping TypeName="CarShowroomModel.Car">
+      <EntityTypeMapping TypeName="CarShowroomModel.Cars">
         <MappingFragment StoreEntitySet="Cars">
           <ScalarProperty Name="Mark" ColumnName="Mark" />
           <ScalarProperty Name="Model" ColumnName="Model" />
@@ -14,7 +14,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CarTypes">
+    <EntitySetMapping Name="CarType">
       <EntityTypeMapping TypeName="CarShowroomModel.CarType">
         <MappingFragment StoreEntitySet="CarType">
           <ScalarProperty Name="BodyType" ColumnName="BodyType" />
@@ -23,7 +23,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Clients">
-      <EntityTypeMapping TypeName="CarShowroomModel.Client">
+      <EntityTypeMapping TypeName="CarShowroomModel.Clients">
         <MappingFragment StoreEntitySet="Clients">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -35,8 +35,10 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Managers">
-      <EntityTypeMapping TypeName="CarShowroomModel.Manager">
+      <EntityTypeMapping TypeName="CarShowroomModel.Managers">
         <MappingFragment StoreEntitySet="Managers">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="WorkExperience" ColumnName="WorkExperience" />
@@ -49,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Modifications">
-      <EntityTypeMapping TypeName="CarShowroomModel.Modification">
+      <EntityTypeMapping TypeName="CarShowroomModel.Modifications">
         <MappingFragment StoreEntitySet="Modifications">
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="EngineVolume" ColumnName="EngineVolume" />
@@ -64,7 +66,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="CarShowroomModel.Order">
+      <EntityTypeMapping TypeName="CarShowroomModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
           <ScalarProperty Name="IsDelivering" ColumnName="IsDelivering" />
@@ -77,7 +79,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PayTypes">
+    <EntitySetMapping Name="PayType">
       <EntityTypeMapping TypeName="CarShowroomModel.PayType">
         <MappingFragment StoreEntitySet="PayType">
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -86,7 +88,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="CarShowroomModel.sysdiagram">
+      <EntityTypeMapping TypeName="CarShowroomModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -96,7 +98,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TransmissionsTypes">
+    <EntitySetMapping Name="TransmissionsType">
       <EntityTypeMapping TypeName="CarShowroomModel.TransmissionsType">
         <MappingFragment StoreEntitySet="TransmissionsType">
           <ScalarProperty Name="TransmissionType" ColumnName="TransmissionType" />

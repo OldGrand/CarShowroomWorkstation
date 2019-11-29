@@ -12,10 +12,6 @@
         <ImageBrush ImageSource="pack://application:,,,/Resources/RegistrationBackGround.png"/>
     </Window.Background>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -25,6 +21,10 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
         <Label x:Name="EmaiLabel" Content="Email" Foreground="White" Style="{StaticResource LabelStyle}"/>
         <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
@@ -35,6 +35,6 @@
         <Label x:Name="ConfirmPasswordLabel" Grid.Row="4" Content="Confirm Password" Foreground="White" Style="{StaticResource LabelStyle}"/>
         <TextBox x:Name="ConfirmPasswordTextBox" Grid.Row="5" Height="50" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
 
-        <Button x:Name="AcceptButtonTwo" Height="110" Grid.Row="6" FontSize="25" Width="270" Content="Зарегистрироваться" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button x:Name="RegistrationButton" Height="110" Grid.Row="6" FontSize="25" Width="270" Content="Зарегистрироваться" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

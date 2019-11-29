@@ -34,6 +34,8 @@
     <Key>
       <PropertyRef Name="ID_manager" />
     </Key>
+    <Property Name="Email" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="Surname" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="WorkExperience" Type="tinyint" Nullable="false" />

@@ -17,13 +17,13 @@ namespace CarShowroomWorkstation
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CarType()
         {
-            this.Cars = new HashSet<Car>();
+            this.Cars = new HashSet<Cars>();
         }
     
         public string BodyType { get; set; }
         public int ID_carType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Car> Cars { get; set; }
+        public virtual ICollection<Cars> Cars { get; set; }
     }
 }

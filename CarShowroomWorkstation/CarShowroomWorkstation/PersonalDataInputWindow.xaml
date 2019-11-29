@@ -1,0 +1,46 @@
+﻿<Window x:Class="CarShowroomWorkstation.PersonalDataInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarShowroomWorkstation"
+        mc:Ignorable="d"
+        Title="PersonalDataInputWindow" Height="450" Width="700"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Label x:Name="NameLabel" Style="{StaticResource LabelStyle}" Content="Name"/>
+        <TextBox x:Name="NameTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+
+        <Label x:Name="SurnameLabel" Grid.Row="2" Style="{StaticResource LabelStyle}" Content="Surname"/>
+        <TextBox x:Name="SurnameTextBox" Grid.Row="3" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+
+        <Label x:Name="WorkExperienceLabel" Grid.Row="4" Style="{StaticResource LabelStyle}" Content="Experience"/>
+        <TextBox x:Name="WorkExperienceTextBox" Grid.Row="5" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+
+        <Label x:Name="BirthDateLabel" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Birth Date"/>
+        <DatePicker x:Name="BirthDatePicker" Height="40" Grid.Row="1" Grid.Column="1" FontSize="30" SelectedDateFormat="Short"></DatePicker>
+
+        <Label x:Name="PassportNumLabel" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Passport Number"/>
+        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+
+        <Label x:Name="PhoneNumLabel" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Phone Number"/>
+        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+
+        <Button x:Name="CancelRegistrationButton" Grid.Row="6" Height="100" Content="Отмена" Template="{Binding Source={StaticResource Button_Template}}"/>
+        <Button x:Name="EndRegistrationButton" Grid.Row="6" Grid.Column="1" Height="100" Content="Завершить регистрацию" Template="{Binding Source={StaticResource Button_Template}}"/>
+    </Grid>
+</Window>

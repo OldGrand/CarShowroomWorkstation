@@ -19,9 +19,20 @@ namespace CarShowroomWorkstation
     /// </summary>
     public partial class RegistrationWindow : Window
     {
+        private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
         public RegistrationWindow()
         {
             InitializeComponent();
+
+            RegistrationButton.Click += RegistrationButtonClick;
+        }
+
+        private void RegistrationButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            PersonalDataInputWindow inputWindow = new PersonalDataInputWindow();
+            inputWindow.Owner = this;
+            inputWindow.ShowDialog(); 
         }
     }
 }

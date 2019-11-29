@@ -19,23 +19,36 @@ namespace CarShowroomWorkstation
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
+        private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
         public AuthorizationWindow()
         {
             InitializeComponent();
-
+      
             RegistrationButton.Click += RegistrationButtonClick;
             LogInButton.Click += LogInButtonClick;
+
         }
 
         private void LogInButtonClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Войти");
+            Managers manager = new Managers();
+            try
+            {
+                manager = _carShowroomEntities.Managers.ToList().Where(x => x.Email.Equals(EmailTextBox.Text) && x.Password.Equals(PasswordTextBox.Text)).First();
+            }
+            catch
+            {
+                MessageBox.Show("Неверный логин или пароль");
+                return;
+            }
+            MessageBox.Show("Регистрация прошла успешно");
         }
 
         private void RegistrationButtonClick(object sender, RoutedEventArgs e)
         {
             this.Hide();
             RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Owner = this;
             registrationWindow.ShowDialog();
             this.Show();
         }

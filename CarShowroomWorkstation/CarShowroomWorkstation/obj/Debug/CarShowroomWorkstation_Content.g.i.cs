@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroommodel.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroommodel.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroomdatamodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("carshowroomdatamodel.tt")]
 
 

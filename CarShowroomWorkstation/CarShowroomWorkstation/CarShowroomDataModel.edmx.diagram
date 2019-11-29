@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ee1f56f556e4713a75567a66e9e89b4" Name="Diagram1">
+        <EntityTypeShape EntityType="CarShowroomModel.Cars" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.CarType" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.Clients" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.Managers" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.Modifications" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.Orders" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.PayType" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShowroomModel.TransmissionsType" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="CarShowroomModel.FK_Cars_CarType" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShowroomModel.FK_Modifications_Cars" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShowroomModel.FK_Orders_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShowroomModel.FK_Orders_Managers" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShowroomModel.FK_Modifications_Orders1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShowroomModel.FK_Modifications_TransmissionsType1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShowroomModel.FK_Orders_PayType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -25,6 +25,7 @@ namespace CarShowroomWorkstation
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Administrators> Administrators { get; set; }
         public virtual DbSet<Cars> Cars { get; set; }
         public virtual DbSet<CarType> CarType { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }

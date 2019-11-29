@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ValidationLibrary;
 
 namespace CarShowroomWorkstation
 {
@@ -20,14 +21,12 @@ namespace CarShowroomWorkstation
     /// </summary>
     public partial class PersonalDataInputWindow : Window
     {
-        private Regex regex;
         public PersonalDataInputWindow()
         {
             InitializeComponent();
             BirthDatePicker.DisplayDate = DateTime.Now;
             BirthDatePicker.Text = DateTime.Now.ToString();
             EndRegistrationButton.IsEnabled = false;
-            
 
             BirthDatePicker.Loaded += delegate
             {
@@ -38,23 +37,9 @@ namespace CarShowroomWorkstation
             };
         }
 
-        public void PassportnNumTextChanged(object sender, EventArgs e)
+        public void ValidationTextChanged(object sender, EventArgs e)
         {
-            regex = new Regex(@"^[A-Z]{2}\d{6}$");
-            if (regex.IsMatch(PassportNumTextBox.Text))
-            {
-                EndRegistrationButton.IsEnabled = true;
-            }
-            else
-            {
-                EndRegistrationButton.IsEnabled = false;
-            }
-        }
-
-        public void PhoneNumTextChanged(object sender, EventArgs e)
-        {
-            regex = new Regex(@"^([+]37529)?\d{7}\b$");
-            if (regex.IsMatch(PassportNumTextBox.Text))
+            if (ValidationLibrary.Validation.PhoneNumberValidation(PhoneNumTextBox.Text) && ValidationLibrary.Validation.PassportNumValidation(PassportNumTextBox.Text))
             {
                 EndRegistrationButton.IsEnabled = true;
             }

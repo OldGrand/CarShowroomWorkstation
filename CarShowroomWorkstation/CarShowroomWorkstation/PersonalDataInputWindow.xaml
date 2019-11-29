@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShowroomWorkstation"
         mc:Ignorable="d"
-        Title="PersonalDataInputWindow" Height="450" Width="700"
+        Title="PersonalDataInputWindow" Height="550" Width="700"
         WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/PersonalDataBackGround.png"/>
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -35,6 +37,7 @@
         <TextBox x:Name="WorkExperienceTextBox" Grid.Row="5" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
         <Label x:Name="BirthDateLabel" Foreground="White" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Birth Date"/>
+        
         <DatePicker x:Name="BirthDatePicker" Background="#3F3F46" Width="300" Height="40" Grid.Row="1" Grid.Column="1" FontSize="30" SelectedDateFormat="Short">
             <!--<DatePicker.CalendarStyle>
                 <Style TargetType="{x:Type Calendar}">
@@ -46,12 +49,16 @@
         </DatePicker>
 
         <Label x:Name="PassportNumLabel" Foreground="White" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Passport Number"/>
-        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="PassportnNumTextChanged"/>
+        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="ValidationTextChanged"/>
 
         <Label x:Name="PhoneNumLabel" Foreground="White" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Phone Number"/>
-        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="PhoneNumTextChanged"/>
+        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="ValidationTextChanged"/>
 
-        <Button x:Name="CancelRegistrationButton"  Grid.Row="6" Content="Отмена" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}"/>
-        <Button x:Name="EndRegistrationButton" Grid.Row="6" Grid.Column="1" Content="Ok" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}"/>
+        <Label x:Name="RoleTypeLabel" Foreground="White" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Choose Account type"/>
+        <RadioButton x:Name="AdminRadioButton" Foreground="White" FontSize="25" Grid.Row="7">Administrator</RadioButton>
+        <RadioButton x:Name="ManagerRadioButton" Foreground="White" FontSize="25" Grid.Row="7" Grid.Column="1" IsChecked="True">Manager</RadioButton>
+
+        <Button x:Name="CancelRegistrationButton"  Grid.Row="8" Content="Отмена" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}"/>
+        <Button x:Name="EndRegistrationButton" Grid.Row="8" Grid.Column="1" Content="Ok" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}"/>
     </Grid>
 </Window>

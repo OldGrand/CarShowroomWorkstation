@@ -29,8 +29,10 @@ namespace CarShowroomWorkstation
         public string PassportNumber { get; set; }
         public string PhoneNumber { get; set; }
         public decimal Salary { get; set; }
+        public int AdministratorFK { get; set; }
         public int ID_manager { get; set; }
     
+        public virtual Administrators Administrators { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
     }

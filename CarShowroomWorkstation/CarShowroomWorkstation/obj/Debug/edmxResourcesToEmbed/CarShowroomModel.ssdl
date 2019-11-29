@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CarShowroomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Administrators">
+    <Key>
+      <PropertyRef Name="ID_administrator" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="WorkExperience" Type="tinyint" Nullable="false" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="PassportNumber" Type="nchar" MaxLength="8" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="ID_administrator" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="Cars">
     <Key>
       <PropertyRef Name="ID_car" />
@@ -34,8 +48,8 @@
     <Key>
       <PropertyRef Name="ID_manager" />
     </Key>
-    <Property Name="Login" Type="varchar" MaxLength="25" />
-    <Property Name="Password" Type="nvarchar" MaxLength="25" />
+    <Property Name="Email" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="Surname" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="WorkExperience" Type="tinyint" Nullable="false" />
@@ -43,6 +57,7 @@
     <Property Name="PassportNumber" Type="nchar" MaxLength="8" Nullable="false" />
     <Property Name="PhoneNumber" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="Salary" Type="money" Nullable="false" />
+    <Property Name="AdministratorFK" Type="int" Nullable="false" />
     <Property Name="ID_manager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Modifications">
@@ -105,6 +120,18 @@
       </Principal>
       <Dependent Role="Cars">
         <PropertyRef Name="CarTypeFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Managers_Administrators">
+    <End Role="Administrators" Type="Self.Administrators" Multiplicity="1" />
+    <End Role="Managers" Type="Self.Managers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Administrators">
+        <PropertyRef Name="ID_administrator" />
+      </Principal>
+      <Dependent Role="Managers">
+        <PropertyRef Name="AdministratorFK" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -181,6 +208,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CarShowroomModelStoreContainer">
+    <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CarType" EntityType="Self.CarType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
@@ -193,6 +221,10 @@
     <AssociationSet Name="FK_Cars_CarType" Association="Self.FK_Cars_CarType">
       <End Role="CarType" EntitySet="CarType" />
       <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Managers_Administrators" Association="Self.FK_Managers_Administrators">
+      <End Role="Administrators" EntitySet="Administrators" />
+      <End Role="Managers" EntitySet="Managers" />
     </AssociationSet>
     <AssociationSet Name="FK_Modifications_Cars" Association="Self.FK_Modifications_Cars">
       <End Role="Cars" EntitySet="Cars" />

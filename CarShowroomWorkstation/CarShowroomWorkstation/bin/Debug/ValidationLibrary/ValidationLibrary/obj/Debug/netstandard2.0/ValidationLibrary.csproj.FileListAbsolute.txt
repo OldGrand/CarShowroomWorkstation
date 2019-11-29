@@ -1,0 +1,8 @@
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\bin\Debug\netstandard2.0\ValidationLibrary.deps.json
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\bin\Debug\netstandard2.0\ValidationLibrary.dll
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\bin\Debug\netstandard2.0\ValidationLibrary.pdb
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\obj\Debug\netstandard2.0\ValidationLibrary.csprojAssemblyReference.cache
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\obj\Debug\netstandard2.0\ValidationLibrary.AssemblyInfoInputs.cache
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\obj\Debug\netstandard2.0\ValidationLibrary.AssemblyInfo.cs
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\obj\Debug\netstandard2.0\ValidationLibrary.dll
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary\ValidationLibrary\obj\Debug\netstandard2.0\ValidationLibrary.pdb

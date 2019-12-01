@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ValidationLibrary;
 
 namespace CarShowroomWorkstation
 {
@@ -27,6 +28,19 @@ namespace CarShowroomWorkstation
             RegistrationButton.Click += RegistrationButtonClick;
             LogInButton.Click += LogInButtonClick;
 
+            EmailTextBox.TextChanged += EmailTextBox_TextChanged;
+        }
+
+        private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Validator.EmailValidation(EmailTextBox.Text))
+            {
+                EmailTextBox.Template = (ControlTemplate)FindResource("TextBox_Template");
+            }
+            else
+            {
+                EmailTextBox.Template = (ControlTemplate)FindResource("ErrorTextBox_Template");
+            }
         }
 
         private void LogInButtonClick(object sender, RoutedEventArgs e)

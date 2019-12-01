@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarShowroomWorkstation.DataClassFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace CarShowroomWorkstation
     public partial class RegistrationWindow : Window
     {
         private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
+        private RegistrationDataClass _dataClass = new RegistrationDataClass();
         public RegistrationWindow()
         {
             InitializeComponent();
@@ -28,14 +30,46 @@ namespace CarShowroomWorkstation
             RegistrationButton.IsEnabled = false;
             RegistrationButton.Click += RegistrationButtonClick;
 
-            EmailTextBox.TextChanged += ValidationTextChanged;
-            PasswordTextBox.TextChanged += ValidationTextChanged;
-            ConfirmPasswordTextBox.TextChanged += ValidationTextChanged;
+            EmailTextBox.TextChanged += EmailTextBox_TextChanged;
+
+            PasswordTextBox.TextChanged += ConfirmPasswordTextBox_TextChanged;
+
+            ConfirmPasswordTextBox.TextChanged += ConfirmPasswordTextBox_TextChanged;
         }
 
-        private void ValidationTextChanged(object sender, EventArgs e)
+        private void ConfirmPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Validator.EmailValidation(EmailTextBox.Text) && PasswordTextBox.Text != "" && PasswordTextBox.Text.Equals(ConfirmPasswordTextBox.Text))
+            if(PasswordTextBox.Text != "" && PasswordTextBox.Text.Equals(ConfirmPasswordTextBox.Text))
+            {
+                _dataClass.IsPasswordConfirmed = true;
+                ConfirmPasswordTextBox.Template = (ControlTemplate)FindResource("TextBox_Template");
+            }
+            else
+            {
+                _dataClass.IsPasswordConfirmed = false;
+                ConfirmPasswordTextBox.Template = (ControlTemplate)FindResource("ErrorTextBox_Template");
+            }
+            ValidationTextChanged();
+        }
+
+        private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Validator.EmailValidation(EmailTextBox.Text))
+            {
+                _dataClass.IsEmailCorrect = true;
+                EmailTextBox.Template = (ControlTemplate)FindResource("TextBox_Template");
+            }
+            else
+            {
+                _dataClass.IsEmailCorrect = false;
+                EmailTextBox.Template = (ControlTemplate)FindResource("ErrorTextBox_Template");
+            }
+            ValidationTextChanged();
+        }
+
+        private void ValidationTextChanged()
+        {
+            if (_dataClass.IsEmailCorrect && _dataClass.IsPasswordConfirmed)
             {
                 RegistrationButton.IsEnabled = true;
             }
@@ -47,10 +81,20 @@ namespace CarShowroomWorkstation
 
         private void RegistrationButtonClick(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            PersonalDataInputWindow inputWindow = new PersonalDataInputWindow(EmailTextBox.Text, PasswordTextBox.Text);
-            inputWindow.Owner = this;
-            inputWindow.ShowDialog(); 
+            if (_carShowroomEntities.Administrators.Count(x => x.Email.Equals(EmailTextBox.Text)) > 0 ||
+                _carShowroomEntities.Managers.Count(x => x.Email.Equals(EmailTextBox.Text)) > 0)
+            {
+                _dataClass.IsEmailCorrect = false;
+                EmailTextBox.Template = (ControlTemplate)FindResource("ErrorTextBox_Template");
+                MessageBox.Show("A user with this email is already registered.\nSpecify another email.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                this.Hide();
+                PersonalDataInputWindow inputWindow = new PersonalDataInputWindow(EmailTextBox.Text, PasswordTextBox.Text);
+                inputWindow.Owner = this;
+                inputWindow.ShowDialog(); 
+            }
         }
     }
 }

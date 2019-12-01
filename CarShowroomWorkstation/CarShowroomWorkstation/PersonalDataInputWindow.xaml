@@ -5,12 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShowroomWorkstation"
         mc:Ignorable="d"
-        Title="PersonalDataInputWindow" Height="550" Width="700"
+        Title="PersonalDataInputWindow" Height="600" Width="700"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="#3F3F46" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#3F3F46" />
+
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2"
+  Background="{StaticResource NormalBrush}"
+  BorderThickness="1" />
+                <Border 
+  Grid.Column="0"
+  CornerRadius="2,0,0,2" 
+  Margin="1" 
+  Background="{StaticResource WindowBackgroundBrush}" 
+  BorderThickness="0,0,1,0" />
+                <Path 
+  x:Name="Arrow"
+  Grid.Column="1"     
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+  Data="M 0 0 L 4 4 L 8 0 Z"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+
+
+        <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton 
+         Name="ToggleButton" 
+         Template="{StaticResource ComboBoxToggleButton}" 
+         Grid.Column="2" 
+         Focusable="false"
+         IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+         ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter
+Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+        Name="ContentSite"
+        IsHitTestVisible="False" 
+        Margin="3,3,23,3"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Left" />
+                            <TextBox x:Name="PART_EditableTextBox"
+         Style="{x:Null}" 
+         Template="{StaticResource ComboBoxTextBox}" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Center" 
+         Margin="3,3,23,3"
+         Focusable="True" 
+         Background="Transparent"
+         Visibility="Hidden"
+         IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup 
+        Name="Popup"
+        Placement="Bottom"
+        IsOpen="{TemplateBinding IsDropDownOpen}"
+        AllowsTransparency="True" 
+        Focusable="False"
+        PopupAnimation="Slide">
+                                <Grid 
+          Name="DropDown"
+          SnapsToDevicePixels="True"                
+          MinWidth="{TemplateBinding ActualWidth}"
+          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+            x:Name="DropDownBorder"
+            Background="{StaticResource WindowBackgroundBrush}"
+            BorderThickness="1"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/PersonalDataBackGround.png"/>
     </Window.Background>
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -20,6 +120,8 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition x:Name="AdminChoosingRowOne" Height="0"></RowDefinition>
+            <RowDefinition x:Name="AdminChoosingRowTwo" Height="0"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -27,29 +129,89 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        <Label x:Name="NameLabel" Foreground="White" Style="{StaticResource LabelStyle}" Content="Name"/>
-        <TextBox x:Name="NameTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" PreviewTextInput="TextBoxPreviewTextInput"/>
+        <Label x:Name="NameLabel" Foreground="White" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Name"/>
+        <TextBox x:Name="NameTextBox" Grid.Row="1" 
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="SurnameLabel" Foreground="White" Grid.Row="2" Style="{StaticResource LabelStyle}" Content="Surname"/>
-        <TextBox x:Name="SurnameTextBox" Grid.Row="3" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" PreviewTextInput="TextBoxPreviewTextInput"/>
+        <Label x:Name="SurnameLabel" Foreground="White" Grid.Row="2" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Surname"/>
+        <TextBox x:Name="SurnameTextBox" Grid.Row="3" 
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="WorkExperienceLabel" Foreground="White" Grid.Row="4" Style="{StaticResource LabelStyle}" Content="Experience"/>
-        <TextBox x:Name="WorkExperienceTextBox" Grid.Row="5" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="ValidationTextChanged"/>
+        <Label x:Name="WorkExperienceLabel" Foreground="White" Grid.Row="4" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Experience"/>
+        <TextBox x:Name="WorkExperienceTextBox" Grid.Row="5" 
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Enter positive integer value
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
 
-        <Label x:Name="BirthDateLabel" Foreground="White" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Birth Date"/>
-        <DatePicker x:Name="BirthDatePicker" Background="#3F3F46" Width="300" Height="40" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalContentAlignment="Center"/>
+        <Label x:Name="BirthDateLabel" Foreground="White" Grid.Column="1" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Birth Date"/>
+        <DatePicker x:Name="BirthDatePicker" Background="#3F3F46" Width="300" 
+                    Height="40" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalContentAlignment="Center"/>
 
-        <Label x:Name="PassportNumLabel" Foreground="White" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Passport Number"/>
-        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="ValidationTextChanged"/>
+        <Label x:Name="PassportNumLabel" Foreground="White" Grid.Row="2" Grid.Column="1" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Passport Number"/>
+        <TextBox x:Name="PassportNumTextBox" Grid.Row="3" Grid.Column="1" 
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Enter value in the format AA000000 (two letters and six nums)
+                </ToolTip>
+            </TextBox.ToolTip>            
+        </TextBox>
 
-        <Label x:Name="PhoneNumLabel" Foreground="White" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Content="Phone Number"/>
-        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source = {StaticResource TextBox_Template}}" TextChanged="ValidationTextChanged"/>
+        <Label x:Name="PhoneNumLabel" Foreground="White" Grid.Row="4" Grid.Column="1" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Phone Number"/>
+        <TextBox x:Name="PhoneNumTextBox" Grid.Row="5" Grid.Column="1" 
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    Enter value in the format +37529 123 45 56 or 123 45 67
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
 
-        <Label x:Name="RoleTypeLabel" Foreground="White" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Choose Account type"/>
-        <RadioButton x:Name="AdminRadioButton" Foreground="White" FontSize="25" Grid.Row="7">Administrator</RadioButton>
-        <RadioButton x:Name="ManagerRadioButton" Foreground="White" FontSize="25" Grid.Row="7" Grid.Column="1" IsChecked="True">Manager</RadioButton>
+        <Label x:Name="RoleTypeLabel" Foreground="White" Grid.Row="6" Grid.ColumnSpan="2" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Choose Account type"/>
+        <RadioButton x:Name="AdminRadioButton" Foreground="White" FontSize="25" 
+                     Grid.Row="7" IsChecked="True">
+            Administrator
+        </RadioButton>
+        <RadioButton x:Name="ManagerRadioButton" Foreground="White" FontSize="25" 
+                     Grid.Row="7" Grid.Column="1">
+            Manager
+        </RadioButton>
 
-        <Button x:Name="CancelRegistrationButton"  Grid.Row="8" Content="Отмена" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}" Click="CancelRegistrationButton_Click"/>
-        <Button x:Name="FinishRegistrationButton" Grid.Row="8" Grid.Column="1" Content="Ok" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource Button_Template}}" Click="FinishRegistrationButton_Click"/>
+        <Label x:Name="AdminChooseLabel" Foreground="White" Grid.Row="8" Grid.ColumnSpan="2" 
+               Style="{StaticResource LabelStyle}" 
+               Content="Choose Administrator"/>
+        <ComboBox x:Name="AdminChoosingComboBox" Grid.Row="9" Grid.ColumnSpan="2" 
+                  Width="280" Height="30" FontSize="18" Foreground="White"/>
+
+
+        <Button x:Name="CancelRegistrationButton"  Grid.Row="10" Content="Отмена" 
+                Style="{StaticResource ButtonStyle}" 
+                Template="{Binding Source={StaticResource Button_Template}}"/>
+        <Button x:Name="FinishRegistrationButton" Grid.Row="10" Grid.Column="1" Content="Ok" 
+                Style="{StaticResource ButtonStyle}" 
+                Template="{Binding Source={StaticResource Button_Template}}"/>
     </Grid>
 </Window>

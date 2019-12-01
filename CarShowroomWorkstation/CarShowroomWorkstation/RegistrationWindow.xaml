@@ -11,7 +11,7 @@
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/RegistrationBackGround.png"/>
     </Window.Background>
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=EmailTextBox}">
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -27,7 +27,13 @@
         </Grid.ColumnDefinitions>
 
         <Label x:Name="EmaiLabel" Content="Email" Foreground="White" Style="{StaticResource LabelStyle}"/>
-        <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
+        <TextBox x:Name="EmailTextBox" Grid.Row="1" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}">
+            <TextBox.ToolTip>
+                <ToolTip x:Name="EmailToolTip" Visibility="Hidden" FontSize="20" PlacementTarget="{Binding EmailTextBox}">
+                    Пользователь с указанной почтой уже зарегистрирован
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
 
         <Label x:Name="PasswordLabel" Grid.Row="2" Content="Password" Foreground="White" Style="{StaticResource LabelStyle}"/>
         <TextBox x:Name="PasswordTextBox" Grid.Row="3" Height="50" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>

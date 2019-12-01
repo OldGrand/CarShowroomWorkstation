@@ -11,8 +11,8 @@
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/BackGround.png"/>
     </Window.Background>
-    
-    <Grid>
+
+    <Grid FocusManager.FocusedElement="{Binding ElementName=EmailTextBox}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>

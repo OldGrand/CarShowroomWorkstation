@@ -114,6 +114,8 @@
     <Compile Include="Clients.cs">
       <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataClassFolder\PersonalDataClass.cs" />
+    <Compile Include="DataClassFolder\RegistrationDataClass.cs" />
     <Compile Include="Managers.cs">
       <DependentUpon>CarShowroomModel.tt</DependentUpon>
     </Compile>

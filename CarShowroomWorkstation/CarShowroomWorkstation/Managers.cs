@@ -30,6 +30,7 @@ namespace CarShowroomWorkstation
         public string PhoneNumber { get; set; }
         public decimal Salary { get; set; }
         public int AdministratorFK { get; set; }
+        public byte IsWorking { get; set; }
         public int ID_manager { get; set; }
     
         public virtual Administrators Administrators { get; set; }

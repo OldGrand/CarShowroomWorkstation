@@ -83,51 +83,57 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddingAutoWindow.xaml.cs">
+      <DependentUpon>AddingAutoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Administrators.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Cars.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarShowroomModel.Context.cs">
+    <Compile Include="CarShowroomDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarShowroomModel.Context.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarShowroomModel.cs">
+    <Compile Include="CarShowroomDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarShowroomModel.Designer.cs">
+    <Compile Include="CarShowroomDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="CarType.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Clients.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataClassFolder\PersonalDataClass.cs" />
     <Compile Include="DataClassFolder\RegistrationDataClass.cs" />
+    <Compile Include="DbControllerWindow.xaml.cs">
+      <DependentUpon>DbControllerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Modifications.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="MVVM\CarAddingViewModel.cs" />
+    <Compile Include="MVVM\DataBaseViewModel.cs" />
+    <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Orders.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PayType.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonalDataInputWindow.xaml.cs">
       <DependentUpon>PersonalDataInputWindow.xaml</DependentUpon>
@@ -136,10 +142,10 @@
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TransmissionsType.cs">
-      <DependentUpon>CarShowroomModel.tt</DependentUpon>
+      <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -163,13 +169,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="CarShowroomModel.edmx">
+    <EntityDeploy Include="CarShowroomDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarShowroomModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CarShowroomDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="CarShowroomModel.edmx.diagram">
-      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
+    <None Include="CarShowroomDataModel.edmx.diagram">
+      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -181,7 +187,15 @@
     <Resource Include="Resources\BackGround.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AddingAutoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DbControllerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +208,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StylesFolder\AuthenticationStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StylesFolder\DataGridStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StylesFolder\MainFormStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,16 +246,21 @@
     <Resource Include="Resources\PersonalDataBackGround.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CarShowroomModel.Context.tt">
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CarShowroomDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
-      <LastGenOutput>CarShowroomModel.Context.cs</LastGenOutput>
+      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
+      <LastGenOutput>CarShowroomDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="CarShowroomModel.tt">
+    <Content Include="CarShowroomDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarShowroomModel.edmx</DependentUpon>
-      <LastGenOutput>CarShowroomModel.cs</LastGenOutput>
+      <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
+      <LastGenOutput>CarShowroomDataModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MainBackGround.png" />
+    <Resource Include="Resources\BGclassic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

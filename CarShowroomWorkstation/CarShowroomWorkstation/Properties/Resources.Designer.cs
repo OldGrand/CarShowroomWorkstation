@@ -73,6 +73,26 @@ namespace CarShowroomWorkstation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BGclassic {
+            get {
+                object obj = ResourceManager.GetObject("BGclassic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MainBackGround {
+            get {
+                object obj = ResourceManager.GetObject("MainBackGround", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PersonalDataBackGround {
             get {
                 object obj = ResourceManager.GetObject("PersonalDataBackGround", resourceCulture);

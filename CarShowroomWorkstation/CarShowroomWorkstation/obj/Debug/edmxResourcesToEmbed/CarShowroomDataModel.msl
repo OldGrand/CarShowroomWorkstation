@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CarShowroomModelStoreContainer" CdmEntityContainer="CarShowroomEntities">
+    <EntitySetMapping Name="Administrators">
+      <EntityTypeMapping TypeName="CarShowroomModel.Administrators">
+        <MappingFragment StoreEntitySet="Administrators">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="WorkExperience" ColumnName="WorkExperience" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="ID_administrator" ColumnName="ID_administrator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Cars">
       <EntityTypeMapping TypeName="CarShowroomModel.Cars">
         <MappingFragment StoreEntitySet="Cars">
@@ -11,6 +26,9 @@
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="ID_car" ColumnName="ID_car" />
           <ScalarProperty Name="CarTypeFK" ColumnName="CarTypeFK" />
+          <ScalarProperty Name="OrdersFK" ColumnName="OrdersFK" />
+          <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+          <ScalarProperty Name="TransmissionFK" ColumnName="TransmissionFK" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -46,22 +64,9 @@
           <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="AdministratorFK" ColumnName="AdministratorFK" />
+          <ScalarProperty Name="IsWorking" ColumnName="IsWorking" />
           <ScalarProperty Name="ID_manager" ColumnName="ID_manager" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Modifications">
-      <EntityTypeMapping TypeName="CarShowroomModel.Modifications">
-        <MappingFragment StoreEntitySet="Modifications">
-          <ScalarProperty Name="Color" ColumnName="Color" />
-          <ScalarProperty Name="EngineVolume" ColumnName="EngineVolume" />
-          <ScalarProperty Name="ClimateControl" ColumnName="ClimateControl" />
-          <ScalarProperty Name="OnBoardComputer" ColumnName="OnBoardComputer" />
-          <ScalarProperty Name="AudioSystem" ColumnName="AudioSystem" />
-          <ScalarProperty Name="ID_modification" ColumnName="ID_modification" />
-          <ScalarProperty Name="OrdersFK" ColumnName="OrdersFK" />
-          <ScalarProperty Name="CarsFK" ColumnName="CarsFK" />
-          <ScalarProperty Name="TransmissionFK" ColumnName="TransmissionFK" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -69,7 +74,7 @@
       <EntityTypeMapping TypeName="CarShowroomModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
-          <ScalarProperty Name="IsDelivering" ColumnName="IsDelivering" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
           <ScalarProperty Name="DateOrderClosing" ColumnName="DateOrderClosing" />
           <ScalarProperty Name="LeadTime" ColumnName="LeadTime" />
           <ScalarProperty Name="ID_order" ColumnName="ID_order" />

@@ -1,0 +1,106 @@
+﻿<Window x:Class="CarShowroomWorkstation.DbControllerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarShowroomWorkstation"
+        mc:Ignorable="d"
+        Title="DbControllerWindow" Height="650" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Resources/MainBackGround.png"/>
+    </Window.Background>
+    
+    <DockPanel LastChildFill="True">
+        <Menu x:Name="ToolStrip" Background="#3F3F46" DockPanel.Dock="Top">
+            <MenuItem Header="ItemOne" FontSize="15" Foreground="White"></MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Заказы" Style="{StaticResource GroupBoxStyle}">
+                <DataGrid x:Name="OrdersDataGrid" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Orders}">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF0A00" />
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Дата принятия" Binding="{Binding Path=DateOfIssue}" Width="*"/>
+                        <DataGridTextColumn Header="Выполнен ли заказ" Binding="{Binding Path=IsCompleted}" Width="*"/>
+                        <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=DateOrderClosing}" Width="*"/>
+                        <DataGridTextColumn Header="Время выполнения" Binding="{Binding Path=LeadTime}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <GroupBox Header="Автомобили" Style="{StaticResource GroupBoxStyle}" Grid.Row="1">
+                <DataGrid x:Name="CarsDataGrid" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF0A00" />
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Марка" Binding="{Binding Path=Mark}" Width="*"/>
+                        <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}" Width="*"/>
+                        <DataGridTextColumn Header="Мощность" Binding="{Binding Path=Horsepower}" Width="*"/>
+                        <DataGridTextColumn Header="Год выпуска" Binding="{Binding Path=YearOfIssue}" Width="*"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <GroupBox Header="Клиенты" Style="{StaticResource GroupBoxStyle}" Grid.Column="1">
+                <DataGrid x:Name="ClientsDataGrid" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Clients}">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF0A00" />
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="*"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Surname}" Width="*"/>
+                        <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Adress}" Width="*"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Path=PhoneNumber}" Width="*"/>
+                        <DataGridTextColumn Header="Номер Пасспорта" Binding="{Binding Path=PassportNumber}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <GroupBox Header="Comand" Style="{StaticResource GroupBoxStyle}" Grid.Column="1" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddCarButton" Width="250" Content="Добавить авто" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+                    <Button x:Name="CheckOutButton" Width="250" Grid.Column="1" Content="Оформить заказ" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+                    <Button x:Name="AddClientButton" Width="250" Grid.Row="1" Content="Добавить клиента" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+                    <Button x:Name="CarSearching" Width="250" Grid.Row="1" Grid.Column="1" Content="Редактировать" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </DockPanel>
+</Window>

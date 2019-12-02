@@ -27,3 +27,9 @@ C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroo
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary.dll
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\bin\Debug\ValidationLibrary.pdb
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\StylesFolder\TextBoxBorderStyles.baml
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\DbControllerWindow.g.cs
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\DbControllerWindow.baml
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\StylesFolder\DataGridStyles.baml
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\StylesFolder\MainFormStyles.baml
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\AddingAutoWindow.g.cs
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\AddingAutoWindow.baml

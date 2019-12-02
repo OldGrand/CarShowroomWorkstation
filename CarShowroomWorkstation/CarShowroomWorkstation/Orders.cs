@@ -17,11 +17,11 @@ namespace CarShowroomWorkstation
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Orders()
         {
-            this.Modifications = new HashSet<Modifications>();
+            this.Cars = new HashSet<Cars>();
         }
     
         public System.DateTime DateOfIssue { get; set; }
-        public byte IsDelivering { get; set; }
+        public byte IsCompleted { get; set; }
         public System.DateTime DateOrderClosing { get; set; }
         public Nullable<System.DateTime> LeadTime { get; set; }
         public int ID_order { get; set; }
@@ -29,10 +29,10 @@ namespace CarShowroomWorkstation
         public int ManagerFK { get; set; }
         public int PayTypeFK { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cars> Cars { get; set; }
         public virtual Clients Clients { get; set; }
         public virtual Managers Managers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Modifications> Modifications { get; set; }
         public virtual PayType PayType { get; set; }
     }
 }

@@ -45,17 +45,28 @@ namespace CarShowroomWorkstation
 
         private void LogInButtonClick(object sender, RoutedEventArgs e)
         {
-            Managers manager = new Managers();
+            object user = new object();
             try
             {
-                manager = _carShowroomEntities.Managers.ToList().Where(x => x.Email.Equals(EmailTextBox.Text) && x.Password.Equals(PasswordTextBox.Text)).First();
+                user = _carShowroomEntities.Managers.First(x => x.Email.Equals(EmailTextBox.Text) && x.Password.Equals(PasswordTextBox.Text));
             }
             catch
             {
-                MessageBox.Show("Неверный логин или пароль");
-                return;
+                try
+                {
+                    user = _carShowroomEntities.Administrators.First(x => x.Email.Equals(EmailTextBox.Text) && x.Password.Equals(PasswordTextBox.Text));
+                }
+                catch
+                {
+                    MessageBox.Show("Неверный логин или пароль");
+                    return;
+                }
             }
-            MessageBox.Show("Регистрация прошла успешно");
+            //TODO передать объект в параметры 
+            this.Hide();
+            DbControllerWindow controllerWindow = new DbControllerWindow();
+            controllerWindow.Closing += (se, ea) => this.Close();
+            controllerWindow.Show();
         }
 
         private void RegistrationButtonClick(object sender, RoutedEventArgs e)

@@ -14,22 +14,19 @@ namespace CarShowroomWorkstation
     
     public partial class Cars
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cars()
-        {
-            this.Modifications = new HashSet<Modifications>();
-        }
-    
         public string Mark { get; set; }
         public string Model { get; set; }
         public int Horsepower { get; set; }
         public System.DateTime YearOfIssue { get; set; }
         public decimal Price { get; set; }
         public int ID_car { get; set; }
-        public Nullable<int> CarTypeFK { get; set; }
+        public int CarTypeFK { get; set; }
+        public Nullable<int> OrdersFK { get; set; }
+        public byte IsSold { get; set; }
+        public int TransmissionFK { get; set; }
     
         public virtual CarType CarType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Modifications> Modifications { get; set; }
+        public virtual Orders Orders { get; set; }
+        public virtual TransmissionsType TransmissionsType { get; set; }
     }
 }

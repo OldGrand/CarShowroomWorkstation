@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\App.xaml
-11439627379
+12-778339477
 21600741461
-31-608980093
+331594557024
 21-2123127974
-AddingAutoWindow.xaml;AddingClientWindow.xaml;AuthorizationWindow.xaml;DbControllerWindow.xaml;EditingDataTableWindow.xaml;PersonalDataInputWindow.xaml;RegistrationWindow.xaml;StylesFolder\AuthenticationStyles.xaml;StylesFolder\DataGridStyles.xaml;StylesFolder\MainFormStyles.xaml;StylesFolder\TextBoxBorderStyles.xaml;
+AddingAutoWindow.xaml;AddingClientWindow.xaml;AuthorizationWindow.xaml;CheckoutWindow.xaml;DbControllerWindow.xaml;EditingDataTableWindow.xaml;PersonalDataInputWindow.xaml;RegistrationWindow.xaml;StylesFolder\AuthenticationStyles.xaml;StylesFolder\DataGridStyles.xaml;StylesFolder\MainFormStyles.xaml;StylesFolder\TextBoxBorderStyles.xaml;
 
-True
+False
 

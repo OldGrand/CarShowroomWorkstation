@@ -117,6 +117,9 @@
     <Compile Include="CarType.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CheckoutWindow.xaml.cs">
+      <DependentUpon>CheckoutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Clients.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
@@ -133,6 +136,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MVVM\CarAddingViewModel.cs" />
+    <Compile Include="MVVM\CheckoutViewModel.cs" />
     <Compile Include="MVVM\ClientAddingViewModel.cs" />
     <Compile Include="MVVM\DataBaseViewModel.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
@@ -204,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CheckoutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

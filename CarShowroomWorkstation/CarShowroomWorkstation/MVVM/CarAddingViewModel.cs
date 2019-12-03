@@ -13,71 +13,102 @@ namespace CarShowroomWorkstation.MVVM
     class CarAddingViewModel : INotifyPropertyChanged
     {
         private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
-        private CarType _selectedCarType;
-        private Cars _selectedCar;
-        private TransmissionsType _selectedTransmission;
+
+        private Cars selectedCar;
+        private CarType carType;
+        private TransmissionsType transmissionsType;
 
         public ObservableCollection<TransmissionsType> Transmissions { get; set; }
-        public ObservableCollection<Cars> Cars { get; set; }
         public ObservableCollection<CarType> CarTypes { get; set; }
+        public ObservableCollection<Cars> Cars { get; set; }
 
-        private RelayCommand _addCommand;
+        private RelayCommand addCommand;
         public RelayCommand AddCommand
         {
             get
             {
-                return _addCommand ??
-                  (_addCommand = new RelayCommand(obj =>
+                return addCommand ??
+                  (addCommand = new RelayCommand(obj =>
                   {
-                      Cars car = new Cars();
-                      Cars.Add(car);
-                      _selectedCar = car;
+                      SaveChangesAsync();
                   }));
             }
         }
 
-        public TransmissionsType SelectedTransmission
+        public async void SaveChangesAsync()
         {
-            get { return _selectedTransmission; }
-            set
+            try
             {
-                _selectedTransmission = value;
-                OnPropertyChanged("SelectedTransmission");
+                _carShowroomEntities.Cars.Attach(selectedCar);
+                Cars.Add(selectedCar);
+                _carShowroomEntities.Cars.Add(selectedCar);
+                await _carShowroomEntities.SaveChangesAsync();
             }
-        }
-
-        public Cars SelectedCar
-        {
-            get { return _selectedCar; }
-            set
+            catch(Exception ex)
             {
-                _selectedCar = value;
-                OnPropertyChanged("SelectedCar");
+                MessageBox.Show($"{ex.StackTrace} {ex.InnerException}");
             }
         }
 
         public CarType SelectedCarType
         {
-            get { return _selectedCarType; }
+            get
+            {
+                return carType;
+            }
             set
             {
-                _selectedCarType = value;
+                selectedCar.CarTypeFK = value.ID_carType;
                 OnPropertyChanged("SelectedCarType");
+            }
+        }
+
+        public TransmissionsType TransmissionsType
+        {
+            get
+            {
+                return transmissionsType;
+            }
+            set
+            {
+                selectedCar.TransmissionFK = value.ID_transmissionType;
+                OnPropertyChanged("SelectedCarType");
+            }
+        }
+
+        public Cars SelectedCar
+        {
+            get { return selectedCar; }
+            set
+            {
+                selectedCar = value;
+                OnPropertyChanged("SelectedCar");
             }
         }
 
         public CarAddingViewModel()
         {
-            Transmissions = new ObservableCollection<TransmissionsType>();
-            Cars = new ObservableCollection<Cars>();
-            CarTypes = new ObservableCollection<CarType>();
+            try
+            {
+                Cars = new ObservableCollection<Cars>();
+                Transmissions = new ObservableCollection<TransmissionsType>();
+                CarTypes = new ObservableCollection<CarType>();
+                foreach (var item in _carShowroomEntities.Cars)
+                    Cars.Add(item);
+                foreach (var item in _carShowroomEntities.TransmissionsType)
+                    Transmissions.Add(item);
+                foreach (var item in _carShowroomEntities.CarType)
+                    CarTypes.Add(item);
 
-            foreach (var item in _carShowroomEntities.TransmissionsType)
-                Transmissions.Add(item);
-            foreach (var item in _carShowroomEntities.CarType)
-                CarTypes.Add(item);
-            foreach (var item in _carShowroomEntities.Cars)
-                Cars.Add(item);
+                selectedCar = new Cars();
+                selectedCar.YearOfIssue = DateTime.Now;
+                carType = new CarType();
+                transmissionsType = new TransmissionsType();
+            }
+            catch
+            {
+                MessageBox.Show("DataBase Connection Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

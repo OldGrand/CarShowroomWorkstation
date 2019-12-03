@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <GroupBox Header="Заказы" Style="{StaticResource GroupBoxStyle}">
-                <DataGrid x:Name="OrdersDataGrid" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Orders}">
+                <DataGrid x:Name="OrdersDataGrid" IsReadOnly="True" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Orders}">
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" Value="#FF0A00" />
@@ -44,7 +44,7 @@
             </GroupBox>
 
             <GroupBox Header="Автомобили" Style="{StaticResource GroupBoxStyle}" Grid.Row="1">
-                <DataGrid x:Name="CarsDataGrid" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}">
+                <DataGrid x:Name="CarsDataGrid" IsReadOnly="True" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}">
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" Value="#FF0A00" />
@@ -63,7 +63,7 @@
             </GroupBox>
 
             <GroupBox Header="Клиенты" Style="{StaticResource GroupBoxStyle}" Grid.Column="1">
-                <DataGrid x:Name="ClientsDataGrid" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Clients}">
+                <DataGrid x:Name="ClientsDataGrid" IsReadOnly="True" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Clients}">
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" Value="#FF0A00" />

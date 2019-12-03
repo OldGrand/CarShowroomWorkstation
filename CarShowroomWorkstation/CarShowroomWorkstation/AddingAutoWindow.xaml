@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CarShowroomWorkstation"
+        xmlns:local="clr-namespace:CarShowroomWorkstation.MVVM"
         mc:Ignorable="d"
-        Title="AddingAutoWindow" Height="520" Width="800">
+        Title="AddingAutoWindow" Height="520" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
             <GradientBrush.GradientStops>
@@ -109,7 +110,7 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/RegistrationBackGround.png"/>
     </Window.Background>
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -126,56 +127,58 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label x:Name="MarkLabel" Foreground="White" 
+
+        <Label Foreground="White" 
                Style="{StaticResource LabelStyle}" 
                Content="Mark"/>
-        <TextBox x:Name="MarkTextBox" Grid.Row="1" Text="{Binding Mark, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Grid.Row="1" DataContext="{Binding SelectedCar}" Text="{Binding Mark, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="ModelLabel" Foreground="White" Grid.Row="2" 
+        <Label Foreground="White" Grid.Row="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Model"/>
-        <TextBox x:Name="ModelTextBox" Grid.Row="3" Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Grid.Row="3" DataContext="{Binding SelectedCar}" Text="{Binding Model, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="HorsePowerLabel" Foreground="White" Grid.Row="4" 
+        <Label Foreground="White" Grid.Row="4" 
                Style="{StaticResource LabelStyle}" 
                Content="Horsepower"/>
-        <TextBox x:Name="HorsePowerTextBox" Grid.Row="5" Text="{Binding Horsepower, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Grid.Row="5" DataContext="{Binding SelectedCar}" Text="{Binding Horsepower, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="YearOfIssueLabel" Foreground="White" Grid.Column="1" 
+        <Label Foreground="White" Grid.Column="1" 
                Style="{StaticResource LabelStyle}" 
                Content="Year Of Issue"/>
-        <DatePicker x:Name="YearOfIssuePicker" Background="#3F3F46" Width="300" SelectedDate="{Binding YearOfIssue, UpdateSourceTrigger=PropertyChanged}"
+        <DatePicker x:Name="YearOfIssuePicker" Background="#3F3F46" Width="300" DataContext="{Binding SelectedCar}" SelectedDate="{Binding YearOfIssue,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Height="40" Grid.Row="1" Grid.Column="1" FontSize="20" 
                     VerticalContentAlignment="Center"/>
 
-        <Label x:Name="PriceLabel" Foreground="White" Grid.Column="1" Grid.Row="2" 
+        <Label Foreground="White" Grid.Column="1" Grid.Row="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Price"/>
-        <TextBox x:Name="PriceTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Grid.Column="1" Grid.Row="3" DataContext="{Binding SelectedCar}" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
-        <Label x:Name="CarTypeChooseLabel" Foreground="White" Grid.Row="4" Grid.Column="1" 
+        <Label Foreground="White" Grid.Row="4" Grid.Column="1" 
                Style="{StaticResource LabelStyle}" 
                Content="Choose Car Type"/>
-        <ComboBox x:Name="CarTypeChoosingComboBox" Grid.Row="5" Grid.Column="1" 
-                  ItemsSource="{Binding CarTypes}" DisplayMemberPath="BodyType" SelectedValue="ID_carType" SelectedValuePath="CarTypes.ID_carType" 
-                  SelectedItem="{Binding CarTypeFK, UpdateSourceTrigger=PropertyChanged}"
+        <ComboBox Grid.Row="5" Grid.Column="1" 
+                  ItemsSource="{Binding CarTypes}" DisplayMemberPath="BodyType" 
+                  SelectedItem="{Binding SelectedCarType, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>
 
-        <Label x:Name="TransmissionTypeChooseLabel" Foreground="White" Grid.Row="6" Grid.ColumnSpan="2" 
+        <Label Foreground="White" Grid.Row="6" Grid.ColumnSpan="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Choose Trasmission Type"/>
-        <ComboBox x:Name="TransmissionTypeChoosingComboBox" Grid.Row="7" Grid.ColumnSpan="2" 
-                  ItemsSource="{Binding Transmissions}" DisplayMemberPath="TransmissionType" SelectedValue="ID_transmissionType" SelectedValuePath="TransmissionType.ID_transmissionType"
-                  SelectedItem="{Binding TransmissionFK, UpdateSourceTrigger=PropertyChanged}"
+        <ComboBox Grid.Row="7" Grid.ColumnSpan="2" 
+                  ItemsSource="{Binding Transmissions}" DisplayMemberPath="TransmissionType"
+                  SelectedItem="{Binding TransmissionsType, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>
-        <Button x:Name="OkButton" Width="250" Grid.ColumnSpan="2" Grid.Row="8" Content="Ok" Command="{Binding AddCommand}" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        
+        <Button Width="250" Grid.ColumnSpan="2" Grid.Row="8" Content="Ok" Command="{Binding AddCommand}" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

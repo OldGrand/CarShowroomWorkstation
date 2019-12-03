@@ -86,6 +86,9 @@
     <Compile Include="AddingAutoWindow.xaml.cs">
       <DependentUpon>AddingAutoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddingClientWindow.xaml.cs">
+      <DependentUpon>AddingClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Administrators.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
@@ -122,11 +125,15 @@
     <Compile Include="DbControllerWindow.xaml.cs">
       <DependentUpon>DbControllerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditingDataTableWindow.xaml.cs">
+      <DependentUpon>EditingDataTableWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MVVM\CarAddingViewModel.cs" />
+    <Compile Include="MVVM\ClientAddingViewModel.cs" />
     <Compile Include="MVVM\DataBaseViewModel.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Orders.cs">
@@ -177,6 +184,7 @@
     <None Include="CarShowroomDataModel.edmx.diagram">
       <DependentUpon>CarShowroomDataModel.edmx</DependentUpon>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -191,11 +199,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddingClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DbControllerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditingDataTableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

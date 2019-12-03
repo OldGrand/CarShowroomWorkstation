@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:CarShowroomWorkstation"
-             StartupUri="AddingAutoWindow.xaml">
+             StartupUri="AddingClientWindow.xaml">
     <!--StartupUri="AuthorizationWindow.xaml"-->
     <Application.Resources>
         <ResourceDictionary>
@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/AuthenticationStyles.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/DataGridStyles.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/MainFormStyles.xaml"></ResourceDictionary>
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

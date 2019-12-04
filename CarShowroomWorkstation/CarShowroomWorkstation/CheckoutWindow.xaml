@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShowroomWorkstation"
         mc:Ignorable="d"
-        Title="CheckoutWindow" Height="450" Width="800"
+        Title="CheckoutWindow" Height="610" Width="800"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
@@ -106,12 +106,96 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
             <Style.Triggers>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContextMenu}">
+                        <Border Background="#CD222120" CornerRadius="7, 7, 8, 8" BorderBrush="DarkGray" BorderThickness="2" Opacity="0.96">
+                            <StackPanel ClipToBounds="True" Orientation="Vertical" IsItemsHost="True" Margin="5,4,5,4"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MultiSelectComboBox" TargetType="{x:Type ComboBox}">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+
+                        <Grid SnapsToDevicePixels="true" x:Name="MainGrid" Height="Auto" Width="Auto">
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+
+                                <ColumnDefinition Width="0"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <Popup AllowsTransparency="true" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+
+Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+
+Margin="1" x:Name="PART_Popup" Grid.ColumnSpan="2">
+
+                                <Border x:Name="DropDownBorder" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding Path=ActualWidth, ElementName=MainGrid}">
+
+                                    <ScrollViewer CanContentScroll="true">
+
+                                        <ListBox x:Name="lstBox" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+
+KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" ItemsSource="{TemplateBinding ItemsSource}"/>
+
+                                    </ScrollViewer>
+
+                                </Border>
+
+                            </Popup>
+
+                            <ToggleButton Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2"
+
+  IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource ToggleButtonStyle1}"/>
+
+                            <ItemsControl IsHitTestVisible="false" ItemsSource="{Binding Path=SelectedItems, ElementName=lstBox}" Margin="4,0,0,0">
+
+                                <ItemsControl.ItemsPanel>
+
+                                    <ItemsPanelTemplate>
+
+                                        <StackPanel IsItemsHost="True" Orientation="Horizontal"/>
+
+                                    </ItemsPanelTemplate>
+
+                                </ItemsControl.ItemsPanel>
+
+                            </ItemsControl>
+
+                        </Grid>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
     </Window.Resources>
     <Window.Background>
         <SolidColorBrush Color="Gray"></SolidColorBrush>
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -129,67 +213,74 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
         <Label Foreground="White"
                Style="{StaticResource LabelStyle}" 
                Content="Date Of Issue"/>
-        <DatePicker Background="#3F3F46" Width="300" DataContext="{Binding selectedOrder}" SelectedDate="{Binding YearOfIssue,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <DatePicker Background="#3F3F46" Width="300" DataContext="{Binding SelectedOrder}" SelectedDate="{Binding DateOfIssue,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Height="40" Grid.Row="1" FontSize="20" 
                     VerticalContentAlignment="Center"/>
 
         <Label Foreground="White" Grid.Row="2"
                Style="{StaticResource LabelStyle}" 
                Content="Choose Client"/>
-        <ComboBox Grid.Row="3"  
+        <TextBox Grid.Row="3" Width="280" Height="30" VerticalAlignment="Center" FontSize="18"
+                 Text="{Binding ClientTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <ComboBox Grid.Row="4"  
                   ItemsSource="{Binding Clients}" DisplayMemberPath="Surname"
                   SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>
 
         <Label Foreground="White" Grid.Column="1"
                Style="{StaticResource LabelStyle}" 
-               Content="Choose Manager"/>
-        <ComboBox Grid.Column="1" Grid.Row="1"  
-                  ItemsSource="{Binding Managers}" DisplayMemberPath="Surname"
-                  SelectedItem="{Binding SelectedManager, Mode=TwoWay}"
-                  Width="280" Height="30" FontSize="18" Foreground="White"/>
-
-        <Label Foreground="White" Grid.Column="1"
-               Grid.Row="2"
-               Style="{StaticResource LabelStyle}" 
                Content="Choose Pay Type"/>
-        <ComboBox Grid.Column="1" Grid.Row="3"  
+        <ComboBox Grid.Column="1" Grid.Row="1"  
                   ItemsSource="{Binding PayTypes}" DisplayMemberPath="Name"
                   SelectedItem="{Binding SelectedPayType, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>
 
+        <Label Foreground="White" Grid.Column="1" Grid.Row="2"
+               Style="{StaticResource LabelStyle}" 
+               Content="Choose Manager"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Width="280" Height="30" VerticalAlignment="Center" FontSize="18"
+                 Text="{Binding ManagerTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <ComboBox Grid.Column="1" Grid.Row="4"  
+                  ItemsSource="{Binding Managers}" DisplayMemberPath="Surname"
+                  SelectedItem="{Binding SelectedManager, Mode=TwoWay}"
+                  Width="280" Height="30" FontSize="18" Foreground="White"/>
+        
+        
         <Label Foreground="White" Grid.ColumnSpan="2"
-               Grid.Row="4"
+               Grid.Row="5"
                Style="{StaticResource LabelStyle}" 
                Content="Choose Car"/>
-        <!--<ComboBox Grid.ColumnSpan="2" Grid.Row="5"  
-                  ItemsSource="{Binding Cars}" DisplayMemberPath="TransmissionType"
-                  SelectedItem="{Binding TransmissionsType, Mode=TwoWay}"
-                  Width="280" Height="30" FontSize="18" Foreground="White"/>-->
-        <ComboBox Grid.Row="5" Grid.ColumnSpan="2" Width="500" Height="Auto">
-            <ListView ItemsSource="{Binding Cars}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="60">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <CheckBox/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="120" Header="Марка"
-            DisplayMemberBinding="{Binding Mark}" />
-                        <GridViewColumn Width="120" Header="Модель" 
-           DisplayMemberBinding="{Binding Model}" />
-                        <GridViewColumn Width="120" Header="Цена" 
-           DisplayMemberBinding="{Binding Price}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ComboBox>
+        <TextBox Grid.ColumnSpan="2" Grid.Row="6" Width="500" Height="30" VerticalAlignment="Center" FontSize="18"
+                 Text="{Binding TextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <GroupBox Header="Car Search Results" Style="{StaticResource GroupBoxStyle}" Grid.ColumnSpan="2" Grid.RowSpan="3"  Grid.Row="7">
+            <DataGrid x:Name="CarsDataGrid" IsReadOnly="True" 
+                      Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF0A00" />
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding Path=Mark}" Width="*"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}" Width="*"/>
+                    <DataGridTextColumn Header="Мощность" Binding="{Binding Path=Horsepower}" Width="*"/>
+                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding Path=YearOfIssue}" Width="*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
 
-        <Button Width="250" Grid.ColumnSpan="2" Grid.Row="6" Content="Ok" Command="{Binding AddCommand}" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button Width="250" Grid.ColumnSpan="2" Grid.Row="10" Content="Ok" 
+                Command="{Binding AddCmd}" CommandParameter="{Binding SelectedItems, ElementName=CarsDataGrid}" 
+                Style="{StaticResource ButtonStyle}" 
+                Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

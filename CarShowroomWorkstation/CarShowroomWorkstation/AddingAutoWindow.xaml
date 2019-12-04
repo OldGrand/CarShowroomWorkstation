@@ -108,7 +108,7 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
         </Style>
     </Window.Resources>
     <Window.Background>
-        <ImageBrush ImageSource="pack://application:,,,/Resources/RegistrationBackGround.png"/>
+        <SolidColorBrush Color="Gray"></SolidColorBrush>
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>

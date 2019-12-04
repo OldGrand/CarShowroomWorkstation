@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarShowroomWorkstation.MVVM
 {
@@ -20,23 +21,22 @@ namespace CarShowroomWorkstation.MVVM
         private PayType selectedPayType;
         private Orders selectedOrder;
 
+        private string textChanged;
+        private string clientTextChanged;
+        private string managerTextChanged;
+        private DateTime selectedDate;
+
         public ObservableCollection<Clients> Clients { get; set; }
         public ObservableCollection<Managers> Managers { get; set; }
         public ObservableCollection<PayType> PayTypes { get; set; }
         public ObservableCollection<Orders> Orders { get; set; }
         public ObservableCollection<Cars> Cars { get; set; }
 
-        private RelayCommand addCommand;
-        public RelayCommand AddCommand
+        public ICommand AddCmd => new RelayCommand(o => Add((Collection<object>)o));
+
+        private void Add(Collection<object> o)
         {
-            get
-            {
-                return addCommand ??
-                  (addCommand = new RelayCommand(obj =>
-                  {
-                      SaveChangesAsync();
-                  }));
-            }
+            selectedOrder.Cars = o.Cast<Cars>().ToList();
         }
 
         public async void SaveChangesAsync()
@@ -53,7 +53,18 @@ namespace CarShowroomWorkstation.MVVM
                 MessageBox.Show($"{ex.StackTrace} {ex.InnerException}");
             }
         }
-
+        public Orders SelectedOrder
+        {
+            get
+            {
+                return selectedOrder;
+            }
+            set
+            {
+                selectedOrder = value;
+                OnPropertyChanged("SelectedOrder");
+            }
+        }
         public Clients SelectedClient
         {
             get
@@ -93,6 +104,70 @@ namespace CarShowroomWorkstation.MVVM
             }
         }
 
+
+        public string ManagerTextChanged
+        {
+            get { return managerTextChanged; }
+            set
+            {
+                if (managerTextChanged != value)
+                {
+                    managerTextChanged = value;
+                    Managers = new ObservableCollection<Managers>(_carShowroomEntities.Managers
+                        .Where(x => x.Name.StartsWith(managerTextChanged) || x.Surname.StartsWith(managerTextChanged)));
+                    OnPropertyChanged("ManagerTextChanged");
+                    OnPropertyChanged("Managers");
+                }
+            }
+        }
+        public string ClientTextChanged
+        {
+            get { return clientTextChanged; }
+            set
+            {
+                if (clientTextChanged != value)
+                {
+                    clientTextChanged = value;
+                    Clients = new ObservableCollection<Clients>(_carShowroomEntities.Clients
+                        .Where(x => x.Name.StartsWith(clientTextChanged) || x.Surname.StartsWith(clientTextChanged)));
+                    OnPropertyChanged("ClientTextChanged");
+                    OnPropertyChanged("Clients");
+                }
+            }
+        }
+        public string TextChanged
+        {
+            get { return this.textChanged; }
+            set
+            {
+                if (this.textChanged != value)
+                {
+                    this.textChanged = value;
+                    Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars
+                        .Where(x => x.Mark.StartsWith(textChanged) || x.Model.StartsWith(textChanged)));
+                    OnPropertyChanged("TextChanged");
+                    OnPropertyChanged("Cars");
+                }
+            }
+        }
+        public DateTime SelectedDate
+        {
+            get
+            {
+                return selectedDate;
+            }
+            set
+            {
+                MessageBox.Show("Test");
+                if(selectedDate != value)
+                {
+                    selectedDate = value;
+                    selectedOrder.DateOfIssue = value;
+                    OnPropertyChanged("SelectedDate");
+                }
+            }
+        }
+
         public CheckoutViewModel()
         {
             try
@@ -103,22 +178,18 @@ namespace CarShowroomWorkstation.MVVM
                 Orders = new ObservableCollection<Orders>();
                 Cars = new ObservableCollection<Cars>();
 
-                foreach (var item in _carShowroomEntities.Clients)
-                    Clients.Add(item);
-                foreach (var item in _carShowroomEntities.Managers)
-                    Managers.Add(item);
                 foreach (var item in _carShowroomEntities.PayType)
                     PayTypes.Add(item);
                 foreach (var item in _carShowroomEntities.Orders)
                     Orders.Add(item);
-                foreach (var item in _carShowroomEntities.Cars)
-                    Cars.Add(item);
 
                 selectedClient = new Clients();
                 selectedManager = new Managers();
                 selectedPayType = new PayType();
                 selectedOrder = new Orders();
+                selectedOrder.DateOfIssue = DateTime.Now;
                 selectedCar = new Cars();
+                selectedDate = new DateTime();
             }
             catch
             {

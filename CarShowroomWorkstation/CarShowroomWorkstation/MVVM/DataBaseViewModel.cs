@@ -20,6 +20,11 @@ namespace CarShowroomWorkstation.MVVM
         public ObservableCollection<Orders> Orders { get; set; }
         public ObservableCollection<Cars> Cars { get; set; }
 
+        public void OpenAddCarWindow()
+        {
+
+        }
+
         public Clients SelectedClient
         {
             get { return _selectedClient; }

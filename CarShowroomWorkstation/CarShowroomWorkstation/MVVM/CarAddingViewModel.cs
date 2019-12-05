@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarShowroomWorkstation.MVVM
 {
@@ -35,6 +36,8 @@ namespace CarShowroomWorkstation.MVVM
             }
         }
 
+        public Action CloseAction { get; set; }
+
         public async void SaveChangesAsync()
         {
             try
@@ -43,6 +46,7 @@ namespace CarShowroomWorkstation.MVVM
                 Cars.Add(selectedCar);
                 _carShowroomEntities.Cars.Add(selectedCar);
                 await _carShowroomEntities.SaveChangesAsync();
+                CloseAction();
             }
             catch(Exception ex)
             {

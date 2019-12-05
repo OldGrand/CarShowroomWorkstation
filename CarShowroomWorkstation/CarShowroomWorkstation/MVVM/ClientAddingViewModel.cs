@@ -30,7 +30,7 @@ namespace CarShowroomWorkstation.MVVM
                   }));
             }
         }
-
+        public Action CloseAction { get; set; }
         public async void SaveChangesAsync()
         {
             try
@@ -39,6 +39,7 @@ namespace CarShowroomWorkstation.MVVM
                 Clients.Add(_selectedClient);
                 _carShowroomEntities.Clients.Add(_selectedClient);
                 await _carShowroomEntities.SaveChangesAsync();
+                CloseAction();
             }
             catch (Exception ex)
             {

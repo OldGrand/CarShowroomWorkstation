@@ -23,7 +23,10 @@ namespace CarShowroomWorkstation
         public AddingClientWindow()
         {
             InitializeComponent();
-            DataContext = new ClientAddingViewModel();
+            ClientAddingViewModel clientAddingViewModel = new ClientAddingViewModel();
+            DataContext = clientAddingViewModel;
+            if (clientAddingViewModel.CloseAction == null)
+                clientAddingViewModel.CloseAction = new Action(this.Close);
         }
     }
 }

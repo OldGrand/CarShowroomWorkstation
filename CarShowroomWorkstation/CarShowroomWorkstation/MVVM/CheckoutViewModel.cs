@@ -37,8 +37,9 @@ namespace CarShowroomWorkstation.MVVM
         private void Add(Collection<object> o)
         {
             selectedOrder.Cars = o.Cast<Cars>().ToList();
+            SaveChangesAsync();
         }
-
+        public Action CloseAction { get; set; }
         public async void SaveChangesAsync()
         {
             try
@@ -47,6 +48,7 @@ namespace CarShowroomWorkstation.MVVM
                 Orders.Add(selectedOrder);
                 _carShowroomEntities.Orders.Add(selectedOrder);
                 await _carShowroomEntities.SaveChangesAsync();
+                CloseAction();
             }
             catch (Exception ex)
             {
@@ -135,6 +137,7 @@ namespace CarShowroomWorkstation.MVVM
                 }
             }
         }
+
         public string TextChanged
         {
             get { return this.textChanged; }
@@ -182,6 +185,12 @@ namespace CarShowroomWorkstation.MVVM
                     PayTypes.Add(item);
                 foreach (var item in _carShowroomEntities.Orders)
                     Orders.Add(item);
+                foreach (var item in _carShowroomEntities.Clients)
+                    Clients.Add(item);
+                foreach (var item in _carShowroomEntities.Managers)
+                    Managers.Add(item);
+                foreach (var item in _carShowroomEntities.Cars)
+                    Cars.Add(item);
 
                 selectedClient = new Clients();
                 selectedManager = new Managers();

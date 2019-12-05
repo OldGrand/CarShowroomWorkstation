@@ -23,7 +23,10 @@ namespace CarShowroomWorkstation
         public CheckoutWindow()
         {
             InitializeComponent();
-            DataContext = new CheckoutViewModel();
+            CheckoutViewModel checkoutView = new CheckoutViewModel();
+            DataContext = checkoutView;
+            if (checkoutView.CloseAction == null)
+                checkoutView.CloseAction = new Action(this.Close);
         }
     }
 }

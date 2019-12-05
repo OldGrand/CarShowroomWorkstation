@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using XLabs.Forms.Mvvm;
 
 namespace CarShowroomWorkstation
 {
@@ -23,7 +24,10 @@ namespace CarShowroomWorkstation
         public AddingAutoWindow()
         {
             InitializeComponent();
-            DataContext = new CarAddingViewModel();
+            CarAddingViewModel vm = new CarAddingViewModel();
+            DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(this.Close);
         }
     }
 }

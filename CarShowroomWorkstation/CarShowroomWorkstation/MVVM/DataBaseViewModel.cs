@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace CarShowroomWorkstation.MVVM
 {
@@ -16,15 +18,14 @@ namespace CarShowroomWorkstation.MVVM
         private Orders _selectedOrder;
         private Cars _selectedCars;
 
+        private string carsTextChanged;
+        private string clientsTextChanged;
+        private string dateTextChanged;
+
         public ObservableCollection<Clients> Clients { get; set; }
         public ObservableCollection<Orders> Orders { get; set; }
         public ObservableCollection<Cars> Cars { get; set; }
-
-        public void OpenAddCarWindow()
-        {
-
-        }
-
+        
         public Clients SelectedClient
         {
             get { return _selectedClient; }
@@ -32,6 +33,61 @@ namespace CarShowroomWorkstation.MVVM
             {
                 _selectedClient = value;
                 OnPropertyChanged("SelectedClient");
+            }
+        }
+
+        public string DateTextChanged
+        {
+            get { return this.dateTextChanged; }
+            set
+            {
+                if (this.dateTextChanged != value)
+                {
+                    this.dateTextChanged = value;
+                    ObservableCollection<Orders> collection = new ObservableCollection<Orders>();
+                    foreach (var item in _carShowroomEntities.Orders)
+                    {
+                        if (item.DateOfIssue.ToString("MM/dd/yyyy").Replace('.', '/').Contains(dateTextChanged))
+                        {
+                            collection.Add(item);
+                        }
+                    }
+                    this.Orders = collection; 
+                    OnPropertyChanged("DateTextChanged");
+                    OnPropertyChanged("Orders");
+                }
+            }
+        }
+
+        public string ClientsTextChanged
+        {
+            get { return this.clientsTextChanged; }
+            set
+            {
+                if (this.clientsTextChanged != value)
+                {
+                    this.clientsTextChanged = value;
+                    Clients = new ObservableCollection<Clients>(_carShowroomEntities.Clients
+                        .Where(x => x.Name.StartsWith(clientsTextChanged) || x.Surname.StartsWith(clientsTextChanged)));
+                    OnPropertyChanged("CarsTextChanged");
+                    OnPropertyChanged("Clients");
+                }
+            }
+        }
+
+        public string CarsTextChanged
+        {
+            get { return this.carsTextChanged; }
+            set
+            {
+                if (this.carsTextChanged != value)
+                {
+                    this.carsTextChanged = value;
+                    Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars
+                        .Where(x => x.Mark.StartsWith(carsTextChanged) || x.Model.StartsWith(carsTextChanged)));
+                    OnPropertyChanged("CarsTextChanged");
+                    OnPropertyChanged("Cars");
+                }
             }
         }
 
@@ -67,6 +123,10 @@ namespace CarShowroomWorkstation.MVVM
                 Orders.Add(item);
             foreach (var item in _carShowroomEntities.Cars)
                 Cars.Add(item);
+
+            _selectedClient = new Clients();
+            _selectedOrder = new Orders();
+            _selectedCars = new Cars();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

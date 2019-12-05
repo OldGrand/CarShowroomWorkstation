@@ -52,7 +52,9 @@
                             <DataGridTextColumn Header="Заказчик" Binding="{Binding Path=Clients.Surname}" Width="*"/>
                             <DataGridTextColumn Header="Выполнен ли заказ" Binding="{Binding Path=IsCompleted}" Width="*"/>
                             <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=DateOrderClosing}" Width="*"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Path=OrderPrice}" Width="*"/>
                             <DataGridTextColumn Header="Время выполнения" Binding="{Binding Path=LeadTime}" Width="*"/>
+                            <DataGridComboBoxColumn Header="Авто" ItemsSource="{Binding Path=Orders.Cars, Mode=TwoWay}"  Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -149,7 +151,11 @@
                             Style="{StaticResource ButtonStyle}" 
                             Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"
                             Click="AddClientButton_Click"/>
-                    <Button x:Name="EditingButton" Width="250" Grid.Row="1" Grid.Column="1" Content="Редактировать" 
+                    <Button x:Name="CloseCheckOutButton" Width="250" Grid.Row="1" Grid.Column="1" Content="Закрыть заказ" 
+                            Style="{StaticResource ButtonStyle}" 
+                            Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"
+                            Click="CloseCheckOutButton_Click"/>
+                    <Button x:Name="EditingButton" Width="250" Grid.Row="2" Grid.Column="1" Content="Редактировать" 
                             Style="{StaticResource ButtonStyle}" 
                             Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"
                             Click="EditingButton_Click"/>

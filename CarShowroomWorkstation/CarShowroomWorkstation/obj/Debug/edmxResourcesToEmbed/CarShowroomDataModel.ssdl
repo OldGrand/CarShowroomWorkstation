@@ -69,8 +69,9 @@
       <PropertyRef Name="ID_order" />
     </Key>
     <Property Name="DateOfIssue" Type="date" Nullable="false" />
+    <Property Name="OrderPrice" Type="money" Nullable="false" />
     <Property Name="IsCompleted" Type="tinyint" Nullable="false" />
-    <Property Name="DateOrderClosing" Type="date" Nullable="false" />
+    <Property Name="DateOrderClosing" Type="date" />
     <Property Name="LeadTime" Type="date" />
     <Property Name="ID_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientFK" Type="int" Nullable="false" />

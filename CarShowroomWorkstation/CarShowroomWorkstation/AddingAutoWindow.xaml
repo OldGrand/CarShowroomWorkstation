@@ -179,6 +179,9 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
                   SelectedItem="{Binding TransmissionsType, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>
         
-        <Button Width="250" Grid.ColumnSpan="2" Grid.Row="8" Content="Ok" Command="{Binding AddCommand}" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <Button Width="250" Grid.ColumnSpan="2" Grid.Row="8" Content="Ok" 
+                Command="{Binding AddCommand}" 
+                Style="{StaticResource ButtonStyle}" 
+                Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

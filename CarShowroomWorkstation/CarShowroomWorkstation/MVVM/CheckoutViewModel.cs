@@ -37,6 +37,7 @@ namespace CarShowroomWorkstation.MVVM
         private void Add(Collection<object> o)
         {
             selectedOrder.Cars = o.Cast<Cars>().ToList();
+            selectedOrder.OrderPrice = selectedOrder.Cars.Sum(x => x.Price);
             SaveChangesAsync();
         }
         public Action CloseAction { get; set; }
@@ -44,7 +45,7 @@ namespace CarShowroomWorkstation.MVVM
         {
             try
             {
-                _carShowroomEntities.Orders.Attach(selectedOrder);
+                //_carShowroomEntities.Orders.Attach(selectedOrder);
                 Orders.Add(selectedOrder);
                 _carShowroomEntities.Orders.Add(selectedOrder);
                 await _carShowroomEntities.SaveChangesAsync();

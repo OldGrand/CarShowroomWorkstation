@@ -77,8 +77,9 @@
       <PropertyRef Name="ID_order" />
     </Key>
     <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="IsCompleted" Type="Byte" Nullable="false" />
-    <Property Name="DateOrderClosing" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateOrderClosing" Type="DateTime" Precision="0" />
     <Property Name="LeadTime" Type="DateTime" Precision="0" />
     <Property Name="ID_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClientFK" Type="Int32" Nullable="false" />

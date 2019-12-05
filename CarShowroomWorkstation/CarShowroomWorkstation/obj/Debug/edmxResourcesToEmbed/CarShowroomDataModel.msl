@@ -74,6 +74,7 @@
       <EntityTypeMapping TypeName="CarShowroomModel.Orders">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+          <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
           <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
           <ScalarProperty Name="DateOrderClosing" ColumnName="DateOrderClosing" />
           <ScalarProperty Name="LeadTime" ColumnName="LeadTime" />

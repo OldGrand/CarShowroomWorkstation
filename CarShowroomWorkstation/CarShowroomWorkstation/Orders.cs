@@ -21,8 +21,9 @@ namespace CarShowroomWorkstation
         }
     
         public System.DateTime DateOfIssue { get; set; }
+        public decimal OrderPrice { get; set; }
         public byte IsCompleted { get; set; }
-        public System.DateTime DateOrderClosing { get; set; }
+        public Nullable<System.DateTime> DateOrderClosing { get; set; }
         public Nullable<System.DateTime> LeadTime { get; set; }
         public int ID_order { get; set; }
         public int ClientFK { get; set; }

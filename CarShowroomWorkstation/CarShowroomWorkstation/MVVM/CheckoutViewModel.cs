@@ -138,7 +138,6 @@ namespace CarShowroomWorkstation.MVVM
                 }
             }
         }
-
         public string TextChanged
         {
             get { return this.textChanged; }

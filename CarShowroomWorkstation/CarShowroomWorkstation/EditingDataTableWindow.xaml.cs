@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarShowroomWorkstation.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,10 @@ namespace CarShowroomWorkstation
         public EditingDataTableWindow()
         {
             InitializeComponent();
+            EditingDataTableViewModel tableViewModel = new EditingDataTableViewModel();
+            DataContext = tableViewModel;
+            if (tableViewModel.CloseAction == null)
+                tableViewModel.CloseAction = new Action(this.Close);
         }
     }
 }

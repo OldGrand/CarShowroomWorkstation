@@ -172,6 +172,7 @@
     <Compile Include="MVVM\ClientAddingViewModel.cs" />
     <Compile Include="MVVM\CloseOrderViewModel.cs" />
     <Compile Include="MVVM\DataBaseViewModel.cs" />
+    <Compile Include="MVVM\EditingDataTableViewModel.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Orders.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>

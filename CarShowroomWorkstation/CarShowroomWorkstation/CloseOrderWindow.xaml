@@ -149,7 +149,6 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
                     <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=DateOrderClosing}" Width="*"/>
                     <DataGridTextColumn Header="Сумма" Binding="{Binding Path=OrderPrice}" Width="*"/>
                     <DataGridTextColumn Header="Время выполнения" Binding="{Binding Path=LeadTime}" Width="*"/>
-                    <DataGridComboBoxColumn Header="Авто" ItemsSource="{Binding Path=Orders.Cars, Mode=TwoWay}"  Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

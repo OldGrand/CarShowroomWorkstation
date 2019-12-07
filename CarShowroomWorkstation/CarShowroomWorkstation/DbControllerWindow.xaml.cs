@@ -74,7 +74,14 @@ namespace CarShowroomWorkstation
 
         private void CloseCheckOutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            CloseOrderWindow closeOrder = new CloseOrderWindow();
+            closeOrder.ShowDialog();
+            DataBaseViewModel dataBaseViewModel = new DataBaseViewModel();
+            this.DataContext = dataBaseViewModel;
+            dataBaseViewModel.OnPropertyChanged("Orders");
+            dataBaseViewModel.OnPropertyChanged("Cars");
+            this.Show();
         }
     }
 }

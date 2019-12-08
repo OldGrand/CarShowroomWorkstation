@@ -41,22 +41,74 @@ namespace CarShowroomWorkstation.MVVM
                 await _carShowroomEntities.SaveChangesAsync();
                 CloseAction();
             }
-            catch (Exception ex)
+            catch 
             {
-                MessageBox.Show($"{ex.StackTrace} {ex.InnerException}");
+                MessageBox.Show($"Проверьте корректность введенных в поля данных", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
-        public Clients SelectedClient
+        public string NameValidator
         {
-            get
-            {
-                return _selectedClient;
-            }
+            get { return _selectedClient.Name; }
             set
             {
-                _selectedClient = value;
-                OnPropertyChanged("SelectedClient");
+                if (value != _selectedClient.Name && value.Length <= 15 && !Char.IsPunctuation(value[value.Length - 1]))
+                {
+                    _selectedClient.Name = value;
+                    OnPropertyChanged("NameValidator");
+                }
+            }
+        }
+
+        public string SurnameValidator
+        {
+            get { return _selectedClient.Surname; }
+            set
+            {
+                if (value != _selectedClient.Surname && value.Length <= 15 && !Char.IsPunctuation(value[value.Length - 1]))
+                {
+                    _selectedClient.Surname = value;
+                    OnPropertyChanged("SurnameValidator");
+                }
+            }
+        }
+
+        public string PhoneNumValidator
+        {
+            get { return _selectedClient.PhoneNumber; }
+            set
+            {
+                if (value != _selectedClient.PhoneNumber && value.Length <=13 && (Char.IsDigit(value[value.Length-1]) || value[value.Length - 1].Equals('+') && value.Length - 1 == 0))
+                {
+                    _selectedClient.PhoneNumber = value;
+                    OnPropertyChanged("PhoneNumValidator");
+                }
+            }
+        }
+
+        public string PasportNumValidator
+        {
+            get { return _selectedClient.PassportNumber; }
+            set
+            {
+                if (value != _selectedClient.PassportNumber && value.Length <= 8 && !Char.IsPunctuation(value[value.Length - 1]) )
+                {
+                    _selectedClient.PassportNumber = value;
+                    OnPropertyChanged("PasportNumValidator");
+                }
+            }
+        }
+
+        public string AddressValidator
+        {
+            get { return _selectedClient.Adress; }
+            set
+            {
+                if (value != _selectedClient.Adress && value.Length <= 25)
+                {
+                    _selectedClient.Adress = value;
+                    OnPropertyChanged("AddressValidator");
+                }
             }
         }
 

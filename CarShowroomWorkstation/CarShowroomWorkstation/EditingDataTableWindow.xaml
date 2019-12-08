@@ -95,8 +95,10 @@
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Дата принятия" Binding="{Binding Path=DateOfIssue}" Width="*"/>
+                                <DataGridTextColumn Header="Заказчик" Binding="{Binding Path=Clients.Surname}" Width="*"/>
                                 <DataGridTextColumn Header="Выполнен ли заказ" Binding="{Binding Path=IsCompleted}" Width="*"/>
                                 <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=DateOrderClosing}" Width="*"/>
+                                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=OrderPrice}" Width="*"/>
                                 <DataGridTextColumn Header="Время выполнения" Binding="{Binding Path=LeadTime}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
@@ -131,7 +133,8 @@
                                 <DataGridTextColumn Header="Марка" Binding="{Binding Path=Mark}" Width="*"/>
                                 <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}" Width="*"/>
                                 <DataGridTextColumn Header="Мощность" Binding="{Binding Path=Horsepower}" Width="*"/>
-                                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Path=YearOfIssue}" Width="*"/>
+                                <DataGridTextColumn Header="Дата выпуска" Binding="{Binding Path=YearOfIssue}" Width="*"/>
+                                <DataGridTextColumn Header="Продано" Binding="{Binding Path=IsSold}" Width="*"/>
                                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>

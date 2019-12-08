@@ -15,6 +15,7 @@ namespace CarShowroomWorkstation.MVVM
     {
         private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
 
+        private Orders selectedOrder;
         private string dateTextChanged;
 
         public ObservableCollection<Orders> Orders { get; set; }
@@ -61,6 +62,16 @@ namespace CarShowroomWorkstation.MVVM
             }
         }
 
+        public Orders SelectedOrder
+        {
+            get { return selectedOrder; }
+            set
+            {
+                selectedOrder = value;
+                OnPropertyChanged("SelectedOrder");
+            }
+        }
+
         public CloseOrderViewModel()
         {
             Orders = new ObservableCollection<Orders>();
@@ -68,6 +79,8 @@ namespace CarShowroomWorkstation.MVVM
             foreach (var item in _carShowroomEntities.Orders)
                 if (item.IsCompleted.Equals(0))
                     Orders.Add(item);
+
+            selectedOrder = Orders.First();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

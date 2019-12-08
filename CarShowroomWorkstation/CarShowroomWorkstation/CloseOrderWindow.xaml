@@ -135,7 +135,8 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
             <DataGrid x:Name="OrdersDataGrid" IsReadOnly="True" 
                       Style="{StaticResource DataGridStyle}" 
                       AutoGenerateColumns="False"
-                      ItemsSource="{Binding Orders}">
+                      ItemsSource="{Binding Orders}"
+                      SelectedItem="{Binding SelectedOrder}">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF0A00" />

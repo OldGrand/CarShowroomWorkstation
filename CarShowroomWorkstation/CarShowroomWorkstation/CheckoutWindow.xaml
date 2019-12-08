@@ -186,6 +186,17 @@ KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" It
             </Setter>
 
         </Style>
+
+        <SolidColorBrush x:Key="brushWatermarkBackground" Color="White" />
+        <SolidColorBrush x:Key="brushWatermarkForeground" Color="LightSteelBlue" />
+        <SolidColorBrush x:Key="brushWatermarkBorder" Color="Indigo" />
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <Style x:Key="EntryFieldStyle" TargetType="Grid" >
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
     </Window.Resources>
     <Window.Background>
         <SolidColorBrush Color="Gray"></SolidColorBrush>
@@ -213,9 +224,11 @@ KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" It
         <Label Foreground="White"
                Style="{StaticResource LabelStyle}" 
                Content="Date Of Issue"/>
-        <DatePicker Background="#3F3F46" Width="300" DataContext="{Binding SelectedOrder}" SelectedDate="{Binding DateOfIssue,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <DatePicker Background="#3F3F46" Width="300" SelectedDate="{Binding SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Height="40" Grid.Row="1" FontSize="20" 
-                    VerticalContentAlignment="Center"/>
+                    VerticalContentAlignment="Center"
+                    DisplayDateStart="01/01/1900"
+                    DisplayDateEnd="{Binding Date}"/>
 
         <Label Foreground="White" Grid.Row="2"
                Style="{StaticResource LabelStyle}" 
@@ -229,6 +242,8 @@ KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" It
                   SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>
 
+        
+        
         <Label Foreground="White" Grid.Column="1"
                Style="{StaticResource LabelStyle}" 
                Content="Choose Pay Type"/>
@@ -243,7 +258,7 @@ KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" It
         <TextBox Grid.Column="1" Grid.Row="3" Width="280" Height="30" VerticalAlignment="Center" FontSize="18"
                  Text="{Binding ManagerTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
-                 Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+                 Template="{Binding Source = {StaticResource TextBox_Template}}"></TextBox>
         <ComboBox Grid.Column="1" Grid.Row="4"  
                   ItemsSource="{Binding Managers}" DisplayMemberPath="Surname"
                   SelectedItem="{Binding SelectedManager, Mode=TwoWay}"
@@ -260,7 +275,8 @@ KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" It
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
         <GroupBox Header="Car Search Results" Style="{StaticResource GroupBoxStyle}" Grid.ColumnSpan="2" Grid.RowSpan="3"  Grid.Row="7">
             <DataGrid x:Name="CarsDataGrid" IsReadOnly="True" 
-                      Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}">
+                      Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}"
+                      SelectedItem="{Binding SelectedCar}">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF0A00" />

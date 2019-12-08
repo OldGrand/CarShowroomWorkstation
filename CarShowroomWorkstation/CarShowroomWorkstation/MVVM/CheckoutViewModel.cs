@@ -24,7 +24,7 @@ namespace CarShowroomWorkstation.MVVM
         private string textChanged;
         private string clientTextChanged;
         private string managerTextChanged;
-        private DateTime selectedDate;
+        private DateTime endDate;
 
         public ObservableCollection<Clients> Clients { get; set; }
         public ObservableCollection<Managers> Managers { get; set; }
@@ -45,7 +45,6 @@ namespace CarShowroomWorkstation.MVVM
         {
             try
             {
-                //_carShowroomEntities.Orders.Attach(selectedOrder);
                 Orders.Add(selectedOrder);
                 _carShowroomEntities.Orders.Add(selectedOrder);
                 await _carShowroomEntities.SaveChangesAsync();
@@ -56,6 +55,7 @@ namespace CarShowroomWorkstation.MVVM
                 MessageBox.Show($"{ex.StackTrace} {ex.InnerException}");
             }
         }
+
         public Orders SelectedOrder
         {
             get
@@ -80,7 +80,6 @@ namespace CarShowroomWorkstation.MVVM
                 OnPropertyChanged("SelectedClient");
             }
         }
-
         public Managers SelectedManager
         {
             get
@@ -93,7 +92,6 @@ namespace CarShowroomWorkstation.MVVM
                 OnPropertyChanged("SelectedManager");
             }
         }
-
         public PayType SelectedPayType
         {
             get 
@@ -106,7 +104,18 @@ namespace CarShowroomWorkstation.MVVM
                 OnPropertyChanged("SelectedPayType");
             }
         }
-
+        public Cars SelectedCar
+        {
+            get
+            {
+                return selectedCar;
+            }
+            set
+            {
+                selectedCar = value;
+                OnPropertyChanged("SelectedCar");
+            }
+        }
 
         public string ManagerTextChanged
         {
@@ -157,18 +166,24 @@ namespace CarShowroomWorkstation.MVVM
         {
             get
             {
-                return selectedDate;
+                return selectedOrder.DateOfIssue;
             }
             set
             {
-                MessageBox.Show("Test");
-                if(selectedDate != value)
+                if(selectedOrder.DateOfIssue != value)
                 {
-                    selectedDate = value;
                     selectedOrder.DateOfIssue = value;
                     OnPropertyChanged("SelectedDate");
                 }
             }
+        }
+        public DateTime Date
+        {
+            get
+            {
+                return endDate;
+            }
+            set { }
         }
 
         public CheckoutViewModel()
@@ -192,13 +207,22 @@ namespace CarShowroomWorkstation.MVVM
                 foreach (var item in _carShowroomEntities.Cars)
                     Cars.Add(item);
 
-                selectedClient = new Clients();
-                selectedManager = new Managers();
-                selectedPayType = new PayType();
                 selectedOrder = new Orders();
+                
+                selectedClient = Clients.First();
+                selectedOrder.ClientFK = Clients.First().ID_client;
+
+                selectedManager = Managers.First();
+                selectedOrder.ManagerFK = Managers.First().ID_manager;
+
+                selectedPayType = PayTypes.First();
+                selectedOrder.PayTypeFK = PayTypes.First().ID_payType;
+
+                selectedCar = Cars.First();
+                selectedOrder.Cars.Add(Cars.First());
+
                 selectedOrder.DateOfIssue = DateTime.Now;
-                selectedCar = new Cars();
-                selectedDate = new DateTime();
+                endDate = DateTime.Now;
             }
             catch
             {

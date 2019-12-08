@@ -131,50 +131,54 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
         <Label Foreground="White" 
                Style="{StaticResource LabelStyle}" 
                Content="Mark"/>
-        <TextBox Grid.Row="1" DataContext="{Binding SelectedCar}" Text="{Binding Mark, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBox Grid.Row="1" Text="{Binding MarkValidator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
         <Label Foreground="White" Grid.Row="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Model"/>
-        <TextBox Grid.Row="3" DataContext="{Binding SelectedCar}" Text="{Binding Model, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBox Grid.Row="3" Text="{Binding ModelValidator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
         <Label Foreground="White" Grid.Row="4" 
                Style="{StaticResource LabelStyle}" 
                Content="Horsepower"/>
-        <TextBox Grid.Row="5" DataContext="{Binding SelectedCar}" Text="{Binding Horsepower, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBox Grid.Row="5" Text="{Binding HorsepowerValidator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
         <Label Foreground="White" Grid.Column="1" 
                Style="{StaticResource LabelStyle}" 
                Content="Year Of Issue"/>
-        <DatePicker x:Name="YearOfIssuePicker" Background="#3F3F46" Width="300" DataContext="{Binding SelectedCar}" SelectedDate="{Binding YearOfIssue,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <DatePicker x:Name="YearOfIssuePicker" Background="#3F3F46" Width="300" 
+                    SelectedDate="{Binding SelectedDate,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Height="40" Grid.Row="1" Grid.Column="1" FontSize="20" 
-                    VerticalContentAlignment="Center"/>
+                    VerticalContentAlignment="Center"
+                    DisplayDateStart="01/01/1900"
+                    DisplayDateEnd="{Binding Date}"/>
 
         <Label Foreground="White" Grid.Column="1" Grid.Row="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Price"/>
-        <TextBox Grid.Column="1" Grid.Row="3" DataContext="{Binding SelectedCar}" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding PiceValidator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
         <Label Foreground="White" Grid.Row="4" Grid.Column="1" 
                Style="{StaticResource LabelStyle}" 
                Content="Choose Car Type"/>
-        <ComboBox Grid.Row="5" Grid.Column="1" 
+        <ComboBox Grid.Row="5" Grid.Column="1"
                   ItemsSource="{Binding CarTypes}" DisplayMemberPath="BodyType" 
                   SelectedItem="{Binding SelectedCarType, Mode=TwoWay}"
-                  Width="280" Height="30" FontSize="18" Foreground="White"/>
+                  Width="280" Height="30" FontSize="18" Foreground="White">
+        </ComboBox>
 
         <Label Foreground="White" Grid.Row="6" Grid.ColumnSpan="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Choose Trasmission Type"/>
-        <ComboBox Grid.Row="7" Grid.ColumnSpan="2" 
+        <ComboBox Grid.Row="7" Grid.ColumnSpan="2"
                   ItemsSource="{Binding Transmissions}" DisplayMemberPath="TransmissionType"
                   SelectedItem="{Binding TransmissionsType, Mode=TwoWay}"
                   Width="280" Height="30" FontSize="18" Foreground="White"/>

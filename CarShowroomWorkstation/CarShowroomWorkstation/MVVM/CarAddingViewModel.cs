@@ -18,6 +18,7 @@ namespace CarShowroomWorkstation.MVVM
         private Cars selectedCar;
         private CarType carType;
         private TransmissionsType transmissionsType;
+        private DateTime endDate;
 
         public ObservableCollection<TransmissionsType> Transmissions { get; set; }
         public ObservableCollection<CarType> CarTypes { get; set; }
@@ -48,9 +49,61 @@ namespace CarShowroomWorkstation.MVVM
                 await _carShowroomEntities.SaveChangesAsync();
                 CloseAction();
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show($"{ex.StackTrace} {ex.InnerException}");
+                MessageBox.Show($"Проверьте корректность введенных в поля данных", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        public string MarkValidator
+        {
+            get { return selectedCar.Mark; }
+            set
+            {
+                if(value != selectedCar.Mark && value.Length <= 15 && !Char.IsPunctuation(value[value.Length - 1]))
+                {
+                    selectedCar.Mark = value;
+                    OnPropertyChanged("MarkValidator");
+                }
+            }
+        }
+
+        public string ModelValidator
+        {
+            get { return selectedCar.Model; }
+            set
+            {
+                if (value != selectedCar.Model && value.Length <= 15 && !Char.IsPunctuation(value[value.Length-1]))
+                {
+                    selectedCar.Model = value;
+                    OnPropertyChanged("ModelValidator");
+                }
+            }
+        }
+
+        public int HorsepowerValidator
+        {
+            get { return selectedCar.Horsepower; }
+            set
+            {
+                if (value != selectedCar.Horsepower && value > 0 && value <= 1200)
+                {
+                    selectedCar.Horsepower = value;
+                    OnPropertyChanged("HorsepowerValidator");
+                }
+            }
+        }
+
+        public decimal PiceValidator
+        {
+            get { return selectedCar.Price; }
+            set
+            {
+                if (value != selectedCar.Price && value > 0 && value <= 50_000_000)
+                {
+                    selectedCar.Price = value;
+                    OnPropertyChanged("PiceValidator");
+                }
             }
         }
 
@@ -76,17 +129,32 @@ namespace CarShowroomWorkstation.MVVM
             set
             {
                 selectedCar.TransmissionFK = value.ID_transmissionType;
-                OnPropertyChanged("SelectedCarType");
+                OnPropertyChanged("TransmissionsType");
             }
         }
-
-        public Cars SelectedCar
+         
+        public DateTime Date
         {
-            get { return selectedCar; }
+            get
+            {
+                return endDate;
+            }
+            set { }
+        }
+
+        public DateTime SelectedDate
+        {
+            get
+            {
+                return selectedCar.YearOfIssue;
+            }
             set
             {
-                selectedCar = value;
-                OnPropertyChanged("SelectedCar");
+                if(selectedCar.YearOfIssue != value)
+                {
+                    selectedCar.YearOfIssue = value;
+                    OnPropertyChanged("SelectedDate");
+                }
             }
         }
 
@@ -106,8 +174,11 @@ namespace CarShowroomWorkstation.MVVM
 
                 selectedCar = new Cars();
                 selectedCar.YearOfIssue = DateTime.Now;
-                carType = new CarType();
-                transmissionsType = new TransmissionsType();
+                endDate = DateTime.Now;
+                carType = CarTypes.First();
+                selectedCar.CarTypeFK = CarTypes.First().ID_carType;
+                transmissionsType = Transmissions.First();
+                selectedCar.TransmissionFK = Transmissions.First().ID_transmissionType;
             }
             catch
             {

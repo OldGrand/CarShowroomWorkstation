@@ -176,8 +176,7 @@
             </TabItem>
         </TabControl>
         <Button Width="250" Grid.Column="1" Grid.Row="3" Content="Сохранить" 
-                        Command="{Binding AddCmd}" CommandParameter="{Binding SelectedItems, ElementName=OrdersDataGrid}"
-                        Style="{StaticResource ButtonStyle}" 
+                        Command="{Binding SaveCmd}" Style="{StaticResource ButtonStyle}" 
                         Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
     </Grid>
 </Window>

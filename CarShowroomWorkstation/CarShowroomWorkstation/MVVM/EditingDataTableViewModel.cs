@@ -27,73 +27,65 @@ namespace CarShowroomWorkstation.MVVM
         public ObservableCollection<Clients> Clients { get; set; }
         public ObservableCollection<Cars> Cars { get; set; }
 
+        private List<Orders> deletedOrders = new List<Orders>();
+        private List<Clients> deletedClients = new List<Clients>();
+        private List<Cars> deletedCars = new List<Cars>();
+
+        private RelayCommand saveCmd;
+        public RelayCommand SaveCmd
+        {
+            get
+            {
+                return saveCmd ??
+                  (saveCmd = new RelayCommand(obj =>
+                  {
+                      foreach (var item in deletedOrders)
+                        _carShowroomEntities.Orders.Remove(item);
+                      foreach (var item in deletedClients)
+                          _carShowroomEntities.Clients.Remove(item);
+                      foreach (var item in deletedCars)
+                            _carShowroomEntities.Cars.Remove(item);
+
+                      _carShowroomEntities.SaveChanges();
+                      CloseAction();
+                  }));
+            }
+        }
 
         public ICommand RemoveCarsCmd => new RelayCommand(o =>
         {
+            Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Except(deletedCars));
             foreach (var item in (Collection<object>)o)
             {
                 Cars.Remove((Cars)item);
+                deletedCars.Add((Cars)item);
             }
             OnPropertyChanged("Cars");
         });
 
         public ICommand RemoveOrdersCmd => new RelayCommand(o =>
         {
+            Orders = new ObservableCollection<Orders>(_carShowroomEntities.Orders.ToList().Except(deletedOrders));
             foreach (var item in (Collection<object>)o)
             {
                 Orders.Remove((Orders)item);
+                deletedOrders.Add((Orders)item);
             }
             OnPropertyChanged("Orders");
         });
 
         public ICommand RemoveClientsCmd => new RelayCommand(o =>
         {
+            Clients = new ObservableCollection<Clients>(_carShowroomEntities.Clients.ToList().Except(deletedClients));
             foreach (var item in (Collection<object>)o)
             {
                 Clients.Remove((Clients)item);
+                deletedClients.Add((Clients)item);
             }
             OnPropertyChanged("Clients");
         });
 
-        #region
         public Action CloseAction { get; set; }
-
-        public Cars SelectedCar
-        {
-            get
-            {
-                return selectedCar;
-            }
-            set
-            {
-                selectedCar = value;
-                OnPropertyChanged("SelectedCar");
-            }
-        }
-
-        public Clients SelectedClient
-        {
-            get
-            {
-                return selectedClient;
-            }
-            set
-            {
-                selectedClient = value;
-                OnPropertyChanged("SelectedClient");
-            }
-        }
-
-        public Orders SelectedOrder
-        {
-            get { return selectedOrder; }
-            set
-            {
-                selectedOrder = value;
-                OnPropertyChanged("SelectedOrder");
-            }
-        }
-        #endregion
 
         public string DateTextChanged
         {
@@ -104,7 +96,7 @@ namespace CarShowroomWorkstation.MVVM
                 {
                     this.dateTextChanged = value;
                     ObservableCollection<Orders> collection = new ObservableCollection<Orders>();
-                    foreach (var item in _carShowroomEntities.Orders)
+                    foreach (var item in _carShowroomEntities.Orders.Except(deletedOrders).ToList())
                     {
                         if (item.DateOfIssue.ToString("MM/dd/yyyy").Replace('.', '/').Contains(dateTextChanged))
                         {
@@ -126,7 +118,7 @@ namespace CarShowroomWorkstation.MVVM
                 if (this.clientsTextChanged != value)
                 {
                     this.clientsTextChanged = value;
-                    Clients = new ObservableCollection<Clients>(_carShowroomEntities.Clients
+                    Clients = new ObservableCollection<Clients>(_carShowroomEntities.Clients.ToList().Except(deletedClients)
                         .Where(x => x.Name.StartsWith(clientsTextChanged) || x.Surname.StartsWith(clientsTextChanged)));
                     OnPropertyChanged("CarsTextChanged");
                     OnPropertyChanged("Clients");
@@ -142,7 +134,7 @@ namespace CarShowroomWorkstation.MVVM
                 if (this.carsTextChanged != value)
                 {
                     this.carsTextChanged = value;
-                    Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars
+                    Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Except(deletedCars)
                         .Where(x => x.Mark.StartsWith(carsTextChanged) || x.Model.StartsWith(carsTextChanged)));
                     OnPropertyChanged("CarsTextChanged");
                     OnPropertyChanged("Cars");

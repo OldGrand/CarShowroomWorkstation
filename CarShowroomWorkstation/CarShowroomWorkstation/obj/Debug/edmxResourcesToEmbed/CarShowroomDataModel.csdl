@@ -165,7 +165,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Orders_Clients">
-    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Clients">

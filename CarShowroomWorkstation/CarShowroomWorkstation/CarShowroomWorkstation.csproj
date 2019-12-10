@@ -58,11 +58,23 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -163,6 +175,9 @@
     <Compile Include="EditingDataTableWindow.xaml.cs">
       <DependentUpon>EditingDataTableWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditingManagerWindow.xaml.cs">
+      <DependentUpon>EditingManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Managers.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
     </Compile>
@@ -173,6 +188,7 @@
     <Compile Include="MVVM\CloseOrderViewModel.cs" />
     <Compile Include="MVVM\DataBaseViewModel.cs" />
     <Compile Include="MVVM\EditingDataTableViewModel.cs" />
+    <Compile Include="MVVM\EditingManagerViewModel.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Orders.cs">
       <DependentUpon>CarShowroomDataModel.tt</DependentUpon>
@@ -258,6 +274,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditingDataTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditingManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

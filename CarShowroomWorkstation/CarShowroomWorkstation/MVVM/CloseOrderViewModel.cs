@@ -79,8 +79,14 @@ namespace CarShowroomWorkstation.MVVM
             foreach (var item in _carShowroomEntities.Orders)
                 if (item.IsCompleted.Equals(0))
                     Orders.Add(item);
-
-            selectedOrder = Orders.First();
+            try
+            {
+                selectedOrder = Orders.First();
+            }
+            catch
+            {
+                MessageBox.Show($"Нет открытых заказов", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

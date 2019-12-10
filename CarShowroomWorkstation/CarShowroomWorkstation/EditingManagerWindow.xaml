@@ -1,0 +1,104 @@
+﻿<Window x:Class="CarShowroomWorkstation.EditingManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarShowroomWorkstation"
+        mc:Ignorable="d"
+        Title="EditingManagerWindow" Height="500" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="#3F3F46" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+    </Window.Resources>
+
+    <Window.Background>
+        <SolidColorBrush Color="Gray"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Height="35" VerticalAlignment="Center" FontSize="18"
+                    Text="{Binding ManagersTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{StaticResource TextBoxStyle}" 
+                    Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <Button Width="200" Grid.Column="1" Content="Удалить выбранных" FontSize="20"
+                    Command="{Binding RemoveManagersCmd}"  CommandParameter="{Binding SelectedItems, ElementName=ManagersDataGrid}" 
+                    Style="{StaticResource ButtonStyle}" 
+                    Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <GroupBox Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                  Header="Manager Editing" Foreground="White">
+            <DataGrid x:Name="ManagersDataGrid" Style="{StaticResource DataGridStyle}" 
+                        ItemsSource="{Binding Managers}"
+                        SelectedItem="{Binding SelectedManager}">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF0A00" />
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}" Width="*"/>
+                    <DataGridTextColumn Header="Пароль" Binding="{Binding Path=Password}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Surname}" Width="*"/>
+                    <DataGridTextColumn Header="Номер Пасспорта" Binding="{Binding Path=PassportNumber}" Width="*"/>
+                    <DataGridTextColumn Header="Номер Телефона" Binding="{Binding Path=PhoneNumber}" Width="*"/>
+                    <DataGridTextColumn Header="Зарплата" Binding="{Binding Path=Salary}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <TextBox Height="35" VerticalAlignment="Center" Grid.Column="3" FontSize="18"
+                    Text="{Binding DateTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{StaticResource TextBoxStyle}" 
+                    Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+        <Button Width="200" Grid.Column="4" Content="Закрепить менеджера" FontSize="18"
+                    Command="{Binding AssociateManagerCmd}"
+                    Style="{StaticResource ButtonStyle}" 
+                    Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+        <GroupBox Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="3"
+                  Header="Назначение на заказ нового менеджера" Foreground="White">
+            <DataGrid x:Name="OrdersDataGrid" Style="{StaticResource DataGridStyle}" 
+                        ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedFreeOrder}"
+                        IsReadOnly="True">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF0A00" />
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Дата принятия" Binding="{Binding Path=DateOfIssue}" Width="*"/>
+                    <DataGridTextColumn Header="Заказчик" Binding="{Binding Path=Clients.Surname}" Width="*"/>
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Path=OrderPrice}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <Button Width="250" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Content="Сохранить" 
+                    Command="{Binding SaveCmd}" Style="{StaticResource ButtonStyle}" 
+                    Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
+    </Grid>
+</Window>

@@ -21,10 +21,29 @@ namespace CarShowroomWorkstation
     /// </summary>
     public partial class DbControllerWindow : Window
     {
-        public DbControllerWindow()
+        public DbControllerWindow(object user)
         {
             InitializeComponent();
             DataContext = new DataBaseViewModel();
+            if (user is Administrators)
+            {
+                ManagerEdit.IsEnabled = true;
+                ManagerEdit.Click += ManagerEdit_Click;
+            }
+
+        }
+
+        private void ManagerEdit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            EditingManagerWindow editingManagerWindow = new EditingManagerWindow();
+            editingManagerWindow.ShowDialog();
+            DataBaseViewModel dataBaseViewModel = new DataBaseViewModel();
+            this.DataContext = dataBaseViewModel;
+            dataBaseViewModel.OnPropertyChanged("Orders");
+            dataBaseViewModel.OnPropertyChanged("Clients");
+            dataBaseViewModel.OnPropertyChanged("Cars");
+            this.Show();
         }
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)

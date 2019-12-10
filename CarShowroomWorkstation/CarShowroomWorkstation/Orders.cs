@@ -27,7 +27,7 @@ namespace CarShowroomWorkstation
         public Nullable<System.DateTime> LeadTime { get; set; }
         public int ID_order { get; set; }
         public int ClientFK { get; set; }
-        public int ManagerFK { get; set; }
+        public Nullable<int> ManagerFK { get; set; }
         public int PayTypeFK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -275,7 +275,8 @@ KeyboardNavigation.DirectionalNavigation="Contained" SelectionMode="Multiple" It
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
         <GroupBox Header="Car Search Results" Style="{StaticResource GroupBoxStyle}" Grid.ColumnSpan="2" Grid.RowSpan="3"  Grid.Row="7">
             <DataGrid x:Name="CarsDataGrid" IsReadOnly="True" 
-                      Style="{StaticResource DataGridStyle}" ItemsSource="{Binding Cars}"
+                      Style="{StaticResource DataGridStyle}" 
+                      ItemsSource="{Binding Cars}"
                       SelectedItem="{Binding SelectedCar}">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">

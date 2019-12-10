@@ -10,22 +10,33 @@
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/MainBackGround.png"/>
     </Window.Background>
-    
+
     <DockPanel LastChildFill="True">
         <Menu x:Name="ToolStrip" Background="#3F3F46" DockPanel.Dock="Top">
-            <MenuItem Header="ItemOne" FontSize="15" Foreground="White"></MenuItem>
+            <MenuItem Header="Экспорт" FontSize="15" Foreground="White">
+                <MenuItem Header="Excel" FontSize="15" 
+                          Foreground="White" Background="#3F3F46"
+                          Command="{Binding ExcelExport}"/>
+                <MenuItem Header="Word" FontSize="15" 
+                          Foreground="White" Background="#3F3F46"
+                          Command="{Binding WordExport}"/>
+            </MenuItem>
+            <MenuItem x:Name="ManagerEdit" Header="Редактировать менеджера" FontSize="15" 
+                      Foreground="White" IsEnabled="False"/>
         </Menu>
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="21*"></ColumnDefinition>
+                <ColumnDefinition Width="178*"/>
+                <ColumnDefinition Width="199*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <GroupBox Header="Заказы" Style="{StaticResource GroupBoxStyle}">
+            <GroupBox Header="Заказы" Style="{StaticResource GroupBoxStyle}" Grid.ColumnSpan="3" Margin="0,0,596.6,0.2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.2*"></RowDefinition>
@@ -54,13 +65,17 @@
                             <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=DateOrderClosing}" Width="*"/>
                             <DataGridTextColumn Header="Сумма" Binding="{Binding Path=OrderPrice}" Width="*"/>
                             <DataGridTextColumn Header="Время выполнения" Binding="{Binding Path=LeadTime}" Width="*"/>
-                            <DataGridComboBoxColumn Header="Авто" ItemsSource="{Binding Path=Orders.Cars, Mode=TwoWay}"  Width="*"/>
+                            <!--<DataGridComboBoxColumn Header="Авто"
+                                SelectedValueBinding="{Binding Orders}"
+                                SelectedValuePath="ID_car"
+                                DisplayMemberPath="Mark"
+                                ItemsSource="{Binding RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Window}}, Path=Cars}" />-->
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </GroupBox>
 
-            <GroupBox Header="Автомобили" Style="{StaticResource GroupBoxStyle}" Grid.Row="1">
+            <GroupBox Header="Автомобили" Style="{StaticResource GroupBoxStyle}" Grid.ColumnSpan="3" Margin="0,299,596.6,0.4" Grid.RowSpan="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.2*"></RowDefinition>
@@ -89,13 +104,13 @@
                             <DataGridTextColumn Header="Дата выпуска" Binding="{Binding Path=YearOfIssue}" Width="*"/>
                             <DataGridTextColumn Header="Продано" Binding="{Binding Path=IsSold}" Width="*"/>
                             <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="*"/>
-                            <DataGridTextColumn Header="Заказан с" Binding="{Binding Path=Orders.DateOfIssue}" Width="*"/>
+                            <DataGridTextColumn Header="Заказчик" Binding="{Binding Path=Orders.Clients.Surname}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </GroupBox>
 
-            <GroupBox Header="Клиенты" Style="{StaticResource GroupBoxStyle}" Grid.Column="1">
+            <GroupBox Header="Клиенты" Style="{StaticResource GroupBoxStyle}" Grid.Column="2" Margin="0.2,0,-0.4,0.2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.2*"></RowDefinition>
@@ -125,7 +140,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Header="Comand" Style="{StaticResource GroupBoxStyle}" Grid.Column="1" Grid.Row="1">
+            <GroupBox Header="Comand" Style="{StaticResource GroupBoxStyle}" Grid.Column="2" Margin="0.2,299,-0.4,0.4" Grid.RowSpan="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>

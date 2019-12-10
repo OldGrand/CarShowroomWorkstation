@@ -156,7 +156,7 @@ namespace CarShowroomWorkstation.MVVM
                 {
                     this.textChanged = value;
                     Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars
-                        .Where(x => x.Mark.StartsWith(textChanged) || x.Model.StartsWith(textChanged)));
+                        .Where(x => x.OrdersFK == null && (x.Mark.StartsWith(textChanged) || x.Model.StartsWith(textChanged))));
                     OnPropertyChanged("TextChanged");
                     OnPropertyChanged("Cars");
                 }
@@ -205,7 +205,8 @@ namespace CarShowroomWorkstation.MVVM
                 foreach (var item in _carShowroomEntities.Managers)
                     Managers.Add(item);
                 foreach (var item in _carShowroomEntities.Cars)
-                    Cars.Add(item);
+                    if(item.OrdersFK == null)
+                        Cars.Add(item);
 
                 selectedOrder = new Orders();
                 

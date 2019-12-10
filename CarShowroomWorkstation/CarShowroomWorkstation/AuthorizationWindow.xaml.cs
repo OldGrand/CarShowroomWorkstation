@@ -64,7 +64,7 @@ namespace CarShowroomWorkstation
             }
             //TODO передать объект в параметры 
             this.Hide();
-            DbControllerWindow controllerWindow = new DbControllerWindow();
+            DbControllerWindow controllerWindow = new DbControllerWindow(user);
             controllerWindow.Closing += (se, ea) => this.Close();
             controllerWindow.Show();
         }

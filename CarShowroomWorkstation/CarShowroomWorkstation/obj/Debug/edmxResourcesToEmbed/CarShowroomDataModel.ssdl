@@ -75,7 +75,7 @@
     <Property Name="LeadTime" Type="date" />
     <Property Name="ID_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientFK" Type="int" Nullable="false" />
-    <Property Name="ManagerFK" Type="int" Nullable="false" />
+    <Property Name="ManagerFK" Type="int" />
     <Property Name="PayTypeFK" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PayType">
@@ -163,7 +163,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Orders_Managers">
-    <End Role="Managers" Type="Self.Managers" Multiplicity="1" />
+    <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Managers">

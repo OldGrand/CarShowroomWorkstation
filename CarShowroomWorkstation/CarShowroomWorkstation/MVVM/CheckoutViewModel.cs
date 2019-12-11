@@ -206,7 +206,7 @@ namespace CarShowroomWorkstation.MVVM
                     if(item.IsWorking == 1)
                         Managers.Add(item);
                 foreach (var item in _carShowroomEntities.Cars)
-                    if(item.OrdersFK == null)
+                    if(item.OrdersFK == null || item.OrdersFK == 0)
                         Cars.Add(item);
 
                 selectedOrder = new Orders();

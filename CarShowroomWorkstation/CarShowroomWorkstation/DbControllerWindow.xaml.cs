@@ -128,10 +128,10 @@ namespace CarShowroomWorkstation
                     string msg = "";
                     CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
                     Managers manager = new Managers();
+                    int currentMonth = DateTime.Now.Month;
                     Administrators administrator = new Administrators();
                     try
                     {
-                        int currentMonth = DateTime.Now.Month;
                         manager = _carShowroomEntities.Managers.ToList().First(x => x.Email.Equals(_email));
                         msg += $@"{manager.Name} {manager.Surname}
 Количество активных заказов: {manager.Orders.Count(x => x.IsCompleted.Equals(0))}
@@ -139,21 +139,42 @@ namespace CarShowroomWorkstation
 Количество выполненных заказов за текущий месяц: {manager.Orders.Count(x => x.DateOrderClosing.HasValue && x.DateOrderClosing.Value.Month.Equals(currentMonth) && x.IsCompleted.Equals(1))}
 Общая сумма выполненных заказов за текущий месяц: {manager.Orders.Where(x => x.DateOrderClosing.HasValue && x.DateOrderClosing.Value.Month.Equals(currentMonth) && x.IsCompleted.Equals(1)).Sum(x => x.Cars.Sum(z => z.Price))}
 Всего выполнено заказов: {manager.Orders.Count}
-Общая стоимость заказов: {manager.Orders.Sum(x => x.OrderPrice)}";
+Общая стоимость заказов: {manager.Orders.Sum(x => x.OrderPrice)}.
+";
                     }
                     catch
                     {
+                        int counter = 1;
                         administrator = _carShowroomEntities.Administrators.ToList().First(x => x.Email.Equals(_email));
+                        if(administrator.Managers.Count > 0)
+                        {
+                            foreach (var mng in administrator.Managers)
+                            {
+                                msg += $@"{counter}. {mng.Name} {mng.Surname}
+Количество активных заказов: {mng.Orders.Count(x => x.IsCompleted.Equals(0))}
+Общая сумма активных заказов: {mng.Orders.Where(x => x.Equals(0)).Sum(x => x.OrderPrice)}
+Количество выполненных заказов за текущий месяц: {mng.Orders.Count(x => x.DateOrderClosing.HasValue && x.DateOrderClosing.Value.Month.Equals(currentMonth) && x.IsCompleted.Equals(1))}
+Общая сумма выполненных заказов за текущий месяц: {mng.Orders.Where(x => x.DateOrderClosing.HasValue && x.DateOrderClosing.Value.Month.Equals(currentMonth) && x.IsCompleted.Equals(1)).Sum(x => x.Cars.Sum(z => z.Price))}
+Всего выполнено заказов: {mng.Orders.Count}
+Общая стоимость заказов: {mng.Orders.Sum(x => x.OrderPrice)}.
+";
+                                counter++;
+                            }
+                        }
+                        else
+                        {
+                            msg = "За вами не закреплено ни одного менеджера";
+                        }
                     }
                     message.Body = msg;
                     try
                     {
                         smtp.Send(message);
-                        MessageBox.Show("Сообщение успешно отправлено");
+                        MessageBox.Show("Сообщение успешно отправлено", "Send Result", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch
                     {
-                        MessageBox.Show("При регистрации указана не существующая почта");
+                        MessageBox.Show("Указанной почты не существует", "Send Result", MessageBoxButton.OK, MessageBoxImage.Error);
                     };
                 }
             });

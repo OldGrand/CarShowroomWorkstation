@@ -12,7 +12,7 @@ using System.Windows.Input;
 namespace CarShowroomWorkstation.MVVM
 {
     class CheckoutViewModel : INotifyPropertyChanged
-    {
+    {//TODO
         private CarShowroomEntities _carShowroomEntities = new CarShowroomEntities();
 
         private Cars selectedCar;
@@ -126,7 +126,7 @@ namespace CarShowroomWorkstation.MVVM
                 {
                     managerTextChanged = value;
                     Managers = new ObservableCollection<Managers>(_carShowroomEntities.Managers
-                        .Where(x => x.Name.StartsWith(managerTextChanged) || x.Surname.StartsWith(managerTextChanged)));
+                        .Where(x => x.IsWorking == 1 && (x.Name.StartsWith(managerTextChanged) || x.Surname.StartsWith(managerTextChanged))));
                     OnPropertyChanged("ManagerTextChanged");
                     OnPropertyChanged("Managers");
                 }
@@ -203,7 +203,8 @@ namespace CarShowroomWorkstation.MVVM
                 foreach (var item in _carShowroomEntities.Clients)
                     Clients.Add(item);
                 foreach (var item in _carShowroomEntities.Managers)
-                    Managers.Add(item);
+                    if(item.IsWorking == 1)
+                        Managers.Add(item);
                 foreach (var item in _carShowroomEntities.Cars)
                     if(item.OrdersFK == null)
                         Cars.Add(item);

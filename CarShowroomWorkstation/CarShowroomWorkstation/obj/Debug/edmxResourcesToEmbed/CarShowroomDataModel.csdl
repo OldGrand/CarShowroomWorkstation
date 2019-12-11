@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="ID_administrator" />
     </Key>
-    <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -57,7 +57,7 @@
     <Key>
       <PropertyRef Name="ID_manager" />
     </Key>
-    <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -80,7 +80,7 @@
     <Property Name="OrderPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="IsCompleted" Type="Byte" Nullable="false" />
     <Property Name="DateOrderClosing" Type="DateTime" Precision="0" />
-    <Property Name="LeadTime" Type="DateTime" Precision="0" />
+    <Property Name="LeadTime" Type="Time" Precision="7" />
     <Property Name="ID_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClientFK" Type="Int32" Nullable="false" />
     <Property Name="ManagerFK" Type="Int32" />

@@ -90,6 +90,7 @@ namespace CarShowroomWorkstation
                     PassportNumber = PassportNumTextBox.Text,
                     PhoneNumber = PhoneNumTextBox.Text,
                     Salary = _startSalary,
+                    IsWorking = 1,
                     AdministratorFK = administrators[AdminChoosingComboBox.SelectedIndex].ID_administrator
                 };
                 _carShowroomEntities.Managers.Add(manager);

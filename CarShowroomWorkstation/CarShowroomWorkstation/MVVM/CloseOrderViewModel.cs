@@ -30,6 +30,7 @@ namespace CarShowroomWorkstation.MVVM
                 Orders order = _carShowroomEntities.Orders.First(x => x.ID_order.Equals(item.ID_order));
                 order.IsCompleted = 1;
                 order.DateOrderClosing = DateTime.Now;
+                order.LeadTime = order.DateOrderClosing - order.DateOfIssue;
                 foreach (var car in order.Cars)
                 {
                     car.IsSold = 1;

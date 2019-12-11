@@ -162,7 +162,7 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
         <Label Foreground="White" Grid.Column="1" Grid.Row="2" 
                Style="{StaticResource LabelStyle}" 
                Content="Price"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding PiceValidator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding PriceValidator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Style="{StaticResource TextBoxStyle}" 
                  Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 

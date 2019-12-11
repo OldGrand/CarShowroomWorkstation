@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ValidationLibrary;
 
 namespace CarShowroomWorkstation.MVVM
 {
@@ -26,7 +27,20 @@ namespace CarShowroomWorkstation.MVVM
                 return addClientCommand ??
                   (addClientCommand = new RelayCommand(obj =>
                   {
-                      SaveChangesAsync();
+                        if (_selectedClient.PhoneNumber != null && _selectedClient.PhoneNumber != "" &&
+                        _selectedClient.PassportNumber != null && _selectedClient.PassportNumber != "" &&
+                        Validator.PhoneNumberValidation(_selectedClient.PhoneNumber) &&
+                        Validator.PassportNumValidation(_selectedClient.PassportNumber) &&
+                        _selectedClient.Name != null && _selectedClient.Name != "" &&
+                        _selectedClient.Surname != null && _selectedClient.Surname != "" &&
+                        _selectedClient.Adress != null && _selectedClient.Adress != "")
+                        {
+                             SaveChangesAsync();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Проверьте корректность введенных в поля данных", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                   }));
             }
         }
@@ -78,7 +92,7 @@ namespace CarShowroomWorkstation.MVVM
             get { return _selectedClient.PhoneNumber; }
             set
             {
-                if (value != _selectedClient.PhoneNumber && value.Length <=13 && (Char.IsDigit(value[value.Length-1]) || value[value.Length - 1].Equals('+') && value.Length - 1 == 0))
+                if (value != _selectedClient.PhoneNumber && value.Length <=13 && value.Length > 0 && (Char.IsDigit(value[value.Length-1]) || value[value.Length - 1].Equals('+') && value.Length - 1 == 0))
                 {
                     _selectedClient.PhoneNumber = value;
                     OnPropertyChanged("PhoneNumValidator");

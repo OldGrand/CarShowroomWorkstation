@@ -37,70 +37,135 @@ namespace CarShowroomWorkstation.MVVM
 
         public ICommand ExcelExport => new RelayCommand(o => ExportToExcel());
 
-        public ICommand WordExport => new RelayCommand(o => ExportToWord());
+        public ICommand WordExport => new RelayCommand(o => FillWordDock());
 
-        private void ExportToWord()
-        {
+        private void FillWordDock()
+        {//TODO рефакторить
             Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application()
             {
                 DisplayAlerts = WdAlertLevel.wdAlertsNone
             };
             string template = $"{Guid.NewGuid().ToString().Substring(0, 8)}.docx";
-
             StreamWriter streamWriter = new StreamWriter(Path.Combine(Environment.CurrentDirectory, template), false);
             streamWriter.Close();
             Document document = wordApp.Documents.Open(Path.Combine(Environment.CurrentDirectory, template));
 
-            FillWordDock(_carShowroomEntities.Cars.ToList(), wordApp, 1);
-            FillWordDock(_carShowroomEntities.Clients.ToList(), wordApp, 2);
-            FillWordDock(_carShowroomEntities.Orders.ToList(), wordApp, 2);
+            object oMissing = System.Reflection.Missing.Value;
+            wordApp.ActiveDocument.Paragraphs.Add(ref oMissing);
+            wordApp.ActiveDocument.Paragraphs.Add(ref oMissing);
+            wordApp.ActiveDocument.Paragraphs.Add(ref oMissing);
+            wordApp.ActiveDocument.Paragraphs.Add(ref oMissing);
 
-            wordApp.Visible = true;
-        }
+            var wordparagraph = wordApp.ActiveDocument.Paragraphs[2];
+            Microsoft.Office.Interop.Word.Range wordrange = wordparagraph.Range;
 
-        private void FillWordDock<T>(List<T> list, Microsoft.Office.Interop.Word.Application wordApp, int tableNum)
-        {//TODO исправить ошибку с выводом
-            PropertyInfo[] propertyInfo = typeof(T).GetProperties();
-            //Добавляем параграф в конец документа
-            var Paragraph = wordApp.ActiveDocument.Paragraphs.Add();
-            //Получаем диапазон
-            var tableRange = Paragraph.Range;
+            List<Clients> clients = _carShowroomEntities.Clients.ToList();
+            PropertyInfo[] propertyInfo = clients.First().GetType().GetProperties();
 
-            wordApp.ActiveDocument.Tables.Add(tableRange, list.Count, propertyInfo.Length);
+            Object defaultTableBehavior = WdDefaultTableBehavior.wdWord9TableBehavior;
+            Object autoFitBehavior = WdAutoFitBehavior.wdAutoFitWindow;
+            Table wordtable1 = wordApp.ActiveDocument.Tables.Add(wordrange, clients.Count, propertyInfo.Length,
+              ref defaultTableBehavior, ref autoFitBehavior);
 
-            var table = wordApp.ActiveDocument.Tables[wordApp.ActiveDocument.Tables.Count];
-            table.set_Style("Сетка таблицы");
-            table.ApplyStyleHeadingRows = true;
-            table.ApplyStyleLastRow = false;
-            table.ApplyStyleFirstColumn = true;
-            table.ApplyStyleLastColumn = false;
-            table.ApplyStyleRowBands = true;
-            table.ApplyStyleColumnBands = false;
+            wordtable1.set_Style("Сетка таблицы");
+            wordtable1.ApplyStyleHeadingRows = true;
+            wordtable1.ApplyStyleLastRow = false;
+            wordtable1.ApplyStyleFirstColumn = true;
+            wordtable1.ApplyStyleLastColumn = false;
+            wordtable1.ApplyStyleRowBands = true;
+            wordtable1.ApplyStyleColumnBands = false;
 
             for (int k = 1; k <= propertyInfo.Length; k++)
             {
-                wordApp.Application.Selection.Tables[tableNum].Cell(1, k).Range.Text = propertyInfo[k - 1].Name.ToString();
-                wordApp.Application.Selection.Tables[tableNum].Cell(1, k).Range.Font.Color = WdColor.wdColorWhite;
-                wordApp.Application.Selection.Tables[tableNum].Cell(1, k).Range.Shading.ForegroundPatternColor = WdColor.wdColorRed;
+                wordtable1.Cell(1, k).Range.Text = propertyInfo[k - 1].Name.ToString();
+                wordtable1.Cell(1, k).Range.Font.Color = WdColor.wdColorWhite;
+                wordtable1.Cell(1, k).Range.Shading.ForegroundPatternColor = WdColor.wdColorRed;
             }
 
-            for (int c = 0; c < list.Count; c++)
+            for (int c = 0; c < clients.Count; c++)
             {
                 for (int j = 0; j < propertyInfo.Length; j++)
                 {
                     try
                     {
-                        string result = propertyInfo[j].GetValue(list[c]).ToString();
-                        wordApp.Application.Selection.Tables[1].Cell(c + 2, j + 1).Range.Text = result.Substring(0, (result.Length > 18) ? 18 : result.Length);
+                        string result = propertyInfo[j].GetValue(clients[c]).ToString();
+                        wordtable1.Cell(c + 2, j + 1).Range.Text = result.Substring(0, (result.Length > 18) ? 18 : result.Length);
                     }
                     catch
                     {
-                        wordApp.Application.Selection.Tables[1].Cell(c + 2, j + 1).Range.Text = list[c].GetType().GetProperties()[j].MetadataToken.ToString();
+                        wordtable1.Cell(c + 2, j + 1).Range.Text = clients[c].GetType().GetProperties()[j].MetadataToken.ToString();
                     }
-                    wordApp.Application.Selection.Tables[1].Cell(c + 2, j + 1).Range.Font.Color = WdColor.wdColorWhite;
-                    wordApp.Application.Selection.Tables[1].Cell(c + 2, j + 1).Range.Shading.ForegroundPatternColor = WdColor.wdColorGray375;
+                    wordtable1.Cell(c + 2, j + 1).Range.Font.Color = WdColor.wdColorWhite;
+                    wordtable1.Cell(c + 2, j + 1).Range.Shading.ForegroundPatternColor = WdColor.wdColorGray375;
                 }
             }
+
+
+            List<Cars> cars = _carShowroomEntities.Cars.ToList();
+            PropertyInfo[] propertyInfo2 = cars.First().GetType().GetProperties();
+            Table wordtable2 = wordApp.ActiveDocument.Tables.Add(wordApp.Selection.Range, cars.Count, propertyInfo2.Length, ref defaultTableBehavior, ref autoFitBehavior);
+
+            for (int k = 1; k <= propertyInfo2.Length; k++)
+            {
+                wordtable2.Cell(1, k).Range.Text = propertyInfo2[k - 1].Name.ToString();
+                wordtable2.Cell(1, k).Range.Font.Color = WdColor.wdColorWhite;
+                wordtable2.Cell(1, k).Range.Shading.ForegroundPatternColor = WdColor.wdColorRed;
+            }
+
+            for (int c = 0; c < cars.Count; c++)
+            {
+                for (int j = 0; j < propertyInfo2.Length; j++)
+                {
+                    try
+                    {
+                        string result = propertyInfo2[j].GetValue(cars[c]).ToString();
+                        wordtable2.Cell(c + 2, j + 1).Range.Text = result.Substring(0, (result.Length > 18) ? 18 : result.Length);
+                    }
+                    catch
+                    {
+                        wordtable2.Cell(c + 2, j + 1).Range.Text = cars[c].GetType().GetProperties()[j].MetadataToken.ToString();
+                    }
+                    wordtable2.Cell(c + 2, j + 1).Range.Font.Color = WdColor.wdColorWhite;
+                    wordtable2.Cell(c + 2, j + 1).Range.Shading.ForegroundPatternColor = WdColor.wdColorGray375;
+                }
+            }
+
+            object unit;
+            object extend;
+            unit = WdUnits.wdStory;
+            extend = WdMovementType.wdMove;
+            wordApp.Selection.EndKey(ref unit, ref extend);
+
+            List<Orders> orders = _carShowroomEntities.Orders.ToList();
+            PropertyInfo[] propertyInfo3 = orders.First().GetType().GetProperties();
+            Table wordtable3 = wordApp.ActiveDocument.Tables.Add(wordApp.Selection.Range, orders.Count, propertyInfo3.Length, ref defaultTableBehavior, ref autoFitBehavior);
+
+            for (int k = 1; k <= propertyInfo3.Length; k++)
+            {
+                wordtable3.Cell(1, k).Range.Text = propertyInfo3[k - 1].Name.ToString();
+                wordtable3.Cell(1, k).Range.Font.Color = WdColor.wdColorWhite;
+                wordtable3.Cell(1, k).Range.Shading.ForegroundPatternColor = WdColor.wdColorRed;
+            }
+
+            for (int c = 0; c < orders.Count; c++)
+            {
+                for (int j = 0; j < propertyInfo3.Length; j++)
+                {
+                    try
+                    {
+                        string result = propertyInfo3[j].GetValue(orders[c]).ToString();
+                        wordtable3.Cell(c + 2, j + 1).Range.Text = result.Substring(0, (result.Length > 18) ? 18 : result.Length);
+                    }
+                    catch
+                    {
+                        wordtable3.Cell(c + 2, j + 1).Range.Text = orders[c].GetType().GetProperties()[j].MetadataToken.ToString();
+                    }
+                    wordtable3.Cell(c + 2, j + 1).Range.Font.Color = WdColor.wdColorWhite;
+                    wordtable3.Cell(c + 2, j + 1).Range.Shading.ForegroundPatternColor = WdColor.wdColorGray375;
+                }
+            }
+
+            wordApp.Visible = true;
         }
 
         private void ExportToExcel()

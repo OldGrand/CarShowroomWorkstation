@@ -32,7 +32,29 @@ namespace CarShowroomWorkstation.MVVM
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                      SaveChangesAsync();
+                      try
+                      {
+                          Convert.ToInt32(selectedCar.Horsepower);
+                          Convert.ToInt32(selectedCar.Price);
+                      }
+                      catch
+                      {
+
+                      }
+                      finally
+                      {
+                          if (selectedCar.Horsepower > 0 && 
+                            selectedCar.Price > 0  &&
+                            selectedCar.Mark != "" && 
+                            selectedCar.Model != "")
+                          {
+                              SaveChangesAsync();
+                          }
+                          else
+                          {
+                              MessageBox.Show($"Проверьте корректность введенных в поля данных", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                          }
+                      }
                   }));
             }
         }
@@ -41,18 +63,11 @@ namespace CarShowroomWorkstation.MVVM
 
         public async void SaveChangesAsync()
         {
-            try
-            {
-                _carShowroomEntities.Cars.Attach(selectedCar);
-                Cars.Add(selectedCar);
-                _carShowroomEntities.Cars.Add(selectedCar);
-                await _carShowroomEntities.SaveChangesAsync();
-                CloseAction();
-            }
-            catch
-            {
-                MessageBox.Show($"Проверьте корректность введенных в поля данных", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            _carShowroomEntities.Cars.Attach(selectedCar);
+            Cars.Add(selectedCar);
+            _carShowroomEntities.Cars.Add(selectedCar);
+            await _carShowroomEntities.SaveChangesAsync();
+            CloseAction();
         }
 
         public string MarkValidator
@@ -73,7 +88,7 @@ namespace CarShowroomWorkstation.MVVM
             get { return selectedCar.Model; }
             set
             {
-                if (value != selectedCar.Model && value.Length <= 15 && !Char.IsPunctuation(value[value.Length-1]))
+                if (value != selectedCar.Model && value.Length <= 15 && !Char.IsPunctuation(value[value.Length - 1]))
                 {
                     selectedCar.Model = value;
                     OnPropertyChanged("ModelValidator");
@@ -86,7 +101,7 @@ namespace CarShowroomWorkstation.MVVM
             get { return selectedCar.Horsepower; }
             set
             {
-                if (value != selectedCar.Horsepower && value > 0 && value <= 1200)
+                if (value != selectedCar.Horsepower && value <= 1200)
                 {
                     selectedCar.Horsepower = value;
                     OnPropertyChanged("HorsepowerValidator");
@@ -94,15 +109,15 @@ namespace CarShowroomWorkstation.MVVM
             }
         }
 
-        public decimal PiceValidator
+        public decimal PriceValidator
         {
             get { return selectedCar.Price; }
             set
             {
-                if (value != selectedCar.Price && value > 0 && value <= 50_000_000)
+                if (value != selectedCar.Price && value <= 50_000_000)
                 {
                     selectedCar.Price = value;
-                    OnPropertyChanged("PiceValidator");
+                    OnPropertyChanged("PriceValidator");
                 }
             }
         }

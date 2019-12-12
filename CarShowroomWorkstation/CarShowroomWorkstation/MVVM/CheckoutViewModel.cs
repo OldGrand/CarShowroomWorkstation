@@ -48,6 +48,7 @@ namespace CarShowroomWorkstation.MVVM
                 Orders.Add(selectedOrder);
                 _carShowroomEntities.Orders.Add(selectedOrder);
                 await _carShowroomEntities.SaveChangesAsync();
+                MessageBox.Show($"Заказ успешно оформлен", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 CloseAction();
             }
             catch (Exception ex)

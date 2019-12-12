@@ -112,6 +112,7 @@ namespace CarShowroomWorkstation
                 _carShowroomEntities.Administrators.Add(administrator);
                 _carShowroomEntities.SaveChanges();
             }
+            MessageBox.Show("Регисрация прошла успешно", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
 

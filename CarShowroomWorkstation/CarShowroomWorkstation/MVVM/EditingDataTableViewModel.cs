@@ -47,6 +47,7 @@ namespace CarShowroomWorkstation.MVVM
                             _carShowroomEntities.Cars.Remove(item);
 
                       _carShowroomEntities.SaveChanges();
+                      MessageBox.Show("Изменения внесены успешно", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                       CloseAction();
                   }));
             }

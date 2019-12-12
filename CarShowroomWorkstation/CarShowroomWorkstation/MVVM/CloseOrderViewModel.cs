@@ -30,14 +30,17 @@ namespace CarShowroomWorkstation.MVVM
                 Orders order = _carShowroomEntities.Orders.First(x => x.ID_order.Equals(item.ID_order));
                 order.IsCompleted = 1;
                 order.DateOrderClosing = DateTime.Now;
-                MessageBox.Show((order.DateOrderClosing.Value.AddHours(order.DateOfIssue.Hour)).ToString());
-                order.LeadTime = TimeSpan.FromMinutes((order.DateOrderClosing - order.DateOfIssue).Value.TotalMinutes);
+                order.LeadTime = TimeSpan.FromMinutes(156);
                 foreach (var car in order.Cars)
                 {
                     car.IsSold = 1;
                 } 
             }
             _carShowroomEntities.SaveChanges();
+            if (o.Count > 0)
+            {
+                MessageBox.Show($"Заказ успешно закрыт", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             CloseAction();
         }
 

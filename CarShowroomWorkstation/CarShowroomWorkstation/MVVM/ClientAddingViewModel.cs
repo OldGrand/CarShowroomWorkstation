@@ -53,6 +53,7 @@ namespace CarShowroomWorkstation.MVVM
                 Clients.Add(_selectedClient);
                 _carShowroomEntities.Clients.Add(_selectedClient);
                 await _carShowroomEntities.SaveChangesAsync();
+                MessageBox.Show($"Клиент успешно добавлен", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 CloseAction();
             }
             catch 

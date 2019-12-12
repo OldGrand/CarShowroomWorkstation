@@ -58,7 +58,7 @@ namespace CarShowroomWorkstation
                 }
                 catch
                 {
-                    MessageBox.Show("Неверный логин или пароль");
+                    MessageBox.Show("Неверный логин или пароль", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
             }

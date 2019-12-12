@@ -67,6 +67,7 @@ namespace CarShowroomWorkstation.MVVM
             Cars.Add(selectedCar);
             _carShowroomEntities.Cars.Add(selectedCar);
             await _carShowroomEntities.SaveChangesAsync();
+            MessageBox.Show($"Автомобиль успешно добавлен", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             CloseAction();
         }
 

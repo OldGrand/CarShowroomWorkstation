@@ -43,10 +43,11 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBox Width="320" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                    Text="{Binding DateTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Style="{StaticResource TextBoxStyle}" 
-                    Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+                    <TextBox Width="320" Height="35" FontSize="18"
+                            VerticalAlignment="Center" HorizontalAlignment="Left" 
+                            Text="{Binding DateTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Style="{StaticResource TextBoxStyle}" 
+                            Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
                     <DataGrid x:Name="OrdersDataGrid" Grid.Row="1" IsReadOnly="True" 
                               Style="{StaticResource DataGridStyle}" 
@@ -82,10 +83,11 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBox Width="320" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                    Text="{Binding CarsTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Style="{StaticResource TextBoxStyle}" 
-                    Template="{Binding Source = {StaticResource TextBox_Template}}"/>
+                    <TextBox Width="320" Height="35" FontSize="18"
+                            VerticalAlignment="Center" HorizontalAlignment="Left" 
+                            Text="{Binding CarsTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Style="{StaticResource TextBoxStyle}" 
+                            Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 
                     <DataGrid x:Name="CarsDataGrid" Grid.Row="1" IsReadOnly="True" 
                               Style="{StaticResource DataGridStyle}" 
@@ -117,7 +119,9 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBox Width="320" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding ClientsTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    <TextBox Width="320" Height="35" FontSize="18"
+                             VerticalAlignment="Center" HorizontalAlignment="Left" 
+                             Text="{Binding ClientsTextChanged, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Style="{StaticResource TextBoxStyle}" 
                     Template="{Binding Source = {StaticResource TextBox_Template}}"/>
 

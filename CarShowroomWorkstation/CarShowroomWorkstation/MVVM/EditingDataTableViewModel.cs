@@ -55,7 +55,7 @@ namespace CarShowroomWorkstation.MVVM
 
         public ICommand RemoveCarsCmd => new RelayCommand(o =>
         {
-            Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Except(deletedCars));
+            Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Where(x => x.IsSold.Equals(0)).Except(deletedCars));
             foreach (var item in (Collection<object>)o)
             {
                 Cars.Remove((Cars)item);
@@ -135,7 +135,7 @@ namespace CarShowroomWorkstation.MVVM
                 if (this.carsTextChanged != value)
                 {
                     this.carsTextChanged = value;
-                    Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Except(deletedCars)
+                    Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Where(x => x.IsSold.Equals(0)).Except(deletedCars)
                         .Where(x => x.Mark.StartsWith(carsTextChanged) || x.Model.StartsWith(carsTextChanged)));
                     OnPropertyChanged("CarsTextChanged");
                     OnPropertyChanged("Cars");
@@ -147,7 +147,7 @@ namespace CarShowroomWorkstation.MVVM
         {
             try
             {
-                Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars);
+                Cars = new ObservableCollection<Cars>(_carShowroomEntities.Cars.ToList().Where(x => x.IsSold.Equals(0)));
                 Clients = new ObservableCollection<Clients>(_carShowroomEntities.Clients);
                 Orders = new ObservableCollection<Orders>(_carShowroomEntities.Orders);
 

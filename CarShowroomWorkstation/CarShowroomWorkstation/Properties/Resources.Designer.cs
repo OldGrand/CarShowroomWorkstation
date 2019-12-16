@@ -93,6 +93,16 @@ namespace CarShowroomWorkstation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PasswordEye {
+            get {
+                object obj = ResourceManager.GetObject("PasswordEye", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PersonalDataBackGround {
             get {
                 object obj = ResourceManager.GetObject("PersonalDataBackGround", resourceCulture);

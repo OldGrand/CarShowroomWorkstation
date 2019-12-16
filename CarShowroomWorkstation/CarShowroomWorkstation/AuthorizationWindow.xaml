@@ -25,11 +25,18 @@
             <RowDefinition ></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Label x:Name="EmaiLabel" Content="Email" Style="{StaticResource LabelStyle}" />
-        <TextBox x:Name="EmailTextBox" Grid.Row="1"  Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
+        <TextBox x:Name="EmailTextBox" Grid.Row="1"  
+                 Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"
+                 MaxLength="30"/>
 
         <Label x:Name="PasswordLabel" Grid.Row="2" Content="Password" Style="{StaticResource LabelStyle}"/>
-        <TextBox x:Name="PasswordTextBox" Grid.Row="3" Height="50" Style="{StaticResource TextBoxStyle}" Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"/>
+        <TextBox x:Name="PasswordTextBox" Grid.Row="3"
+                 Height="50" Style="{StaticResource TextBoxStyle}" 
+                 Template="{Binding Source={StaticResource ResourceKey=TextBox_Template}}"
+                 MaxLength="30"/>
 
         <Button x:Name="LogInButton" Grid.Row="4" Content="Войти" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>
         <Button x:Name="RegistrationButton" Margin="110 10 10 10" Grid.Column="1" Grid.Row="5" Content="Регистрация" Style="{StaticResource ButtonStyle}" Template="{Binding Source={StaticResource ResourceKey=Button_Template}}"/>

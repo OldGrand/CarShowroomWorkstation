@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/AuthenticationStyles.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/DataGridStyles.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/MainFormStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/CarShowroomWorkstation;component/StylesFolder/BrushesStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

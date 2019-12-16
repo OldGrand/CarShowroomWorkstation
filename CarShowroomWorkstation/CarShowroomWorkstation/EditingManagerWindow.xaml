@@ -65,6 +65,7 @@
                     <DataGridTextColumn Header="Номер Пасспорта" Binding="{Binding Path=PassportNumber}" Width="*"/>
                     <DataGridTextColumn Header="Номер Телефона" Binding="{Binding Path=PhoneNumber}" Width="*"/>
                     <DataGridTextColumn Header="Зарплата" Binding="{Binding Path=Salary}" Width="*"/>
+                    <DataGridTextColumn Header="Кол-во заказов" Binding="{Binding Path=Orders.Count}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

@@ -26,11 +26,11 @@ namespace CarShowroomWorkstation.MVVM
         private void SwitchOrderState(Collection<object> o)
         {
             foreach (var item in o.Cast<Orders>())
-            {//TODO исправить ошибку со временем
+            {
                 Orders order = _carShowroomEntities.Orders.First(x => x.ID_order.Equals(item.ID_order));
                 order.IsCompleted = 1;
                 order.DateOrderClosing = DateTime.Now;
-                order.LeadTime = TimeSpan.FromMinutes(156);
+                order.LeadTime = order.DateOrderClosing - order.DateOfIssue;
                 foreach (var car in order.Cars)
                 {
                     car.IsSold = 1;

@@ -106,6 +106,53 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
             <Style.Triggers>
             </Style.Triggers>
         </Style>
+        <Style x:Key="{x:Type RadioButton}" TargetType="{x:Type RadioButton}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource RadioButtonFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Grid Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+              Height="{Binding ActualHeight, ElementName=PART_Content}" >
+                                    <Ellipse x:Name="Border"  
+                Fill="{StaticResource NormalBrush}"
+                StrokeThickness="1"
+                Stroke="{StaticResource NormalBorderBrush}" />
+                                    <Ellipse x:Name="CheckMark"
+                Margin="4"
+                Fill="{StaticResource GlyphBrush}" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Name="PART_Content"
+            Margin="4,0,0,0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Fill" Value="{StaticResource DarkBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Fill" Value="{StaticResource PressedBrush}" />
+                                <Setter TargetName="Border" Property="Stroke" Value="{StaticResource GlyphBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" />
+                                <Setter TargetName="Border" Property="Stroke" Value="#40000000" />
+                                <Setter Property="Foreground" Value="#80000000"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/PersonalDataBackGround.png"/>
@@ -192,11 +239,13 @@ Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{Template
                Style="{StaticResource LabelStyle}" 
                Content="Choose Account type"/>
         <RadioButton x:Name="AdminRadioButton" Foreground="White" FontSize="25" 
-                     Grid.Row="7" IsChecked="True">
+                     Grid.Row="7" Height="35" IsChecked="True"
+                     HorizontalAlignment="Center">
             Administrator
         </RadioButton>
         <RadioButton x:Name="ManagerRadioButton" Foreground="White" FontSize="25" 
-                     Grid.Row="7" Grid.Column="1">
+                     Grid.Row="7" Height="35" Grid.Column="1"
+                     HorizontalAlignment="Center">
             Manager
         </RadioButton>
 

@@ -6,11 +6,111 @@
         xmlns:local="clr-namespace:CarShowroomWorkstation"
         mc:Ignorable="d"
         Title="DbControllerWindow" Height="650" Width="1200"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Resources/MainBackGround.png"/>
     </Window.Background>
+    <Window.Resources>
+        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="#3F3F46" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
 
+        <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#3F3F46" />
+
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2"
+  Background="{StaticResource NormalBrush}"
+  BorderThickness="1" />
+                <Border 
+  Grid.Column="0"
+  CornerRadius="2,0,0,2" 
+  Margin="1" 
+  Background="{StaticResource WindowBackgroundBrush}" 
+  BorderThickness="0,0,1,0" />
+                <Path 
+  x:Name="Arrow"
+  Grid.Column="1"     
+  HorizontalAlignment="Center"
+  VerticalAlignment="Center"
+  Data="M 0 0 L 4 4 L 8 0 Z"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+
+
+        <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton 
+         Name="ToggleButton" 
+         Template="{StaticResource ComboBoxToggleButton}" 
+         Grid.Column="2" 
+         Focusable="false"
+         IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+         ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter
+Content="{TemplateBinding ComboBox.SelectionBoxItem}" ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+        Name="ContentSite"
+        IsHitTestVisible="False" 
+        Margin="3,3,23,3"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Left" />
+                            <TextBox x:Name="PART_EditableTextBox"
+         Style="{x:Null}" 
+         Template="{StaticResource ComboBoxTextBox}" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Center" 
+         Margin="3,3,23,3"
+         Focusable="True" 
+         Background="Transparent"
+         Visibility="Hidden"
+         IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup 
+        Name="Popup"
+        Placement="Bottom"
+        IsOpen="{TemplateBinding IsDropDownOpen}"
+        AllowsTransparency="True" 
+        Focusable="False"
+        PopupAnimation="Slide">
+                                <Grid 
+          Name="DropDown"
+          SnapsToDevicePixels="True"                
+          MinWidth="{TemplateBinding ActualWidth}"
+          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+            x:Name="DropDownBorder"
+            Background="{StaticResource WindowBackgroundBrush}"
+            BorderThickness="1"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <DockPanel LastChildFill="True">
         <Menu x:Name="ToolStrip" Background="#3F3F46" DockPanel.Dock="Top">
             <MenuItem Header="Экспорт" FontSize="15" Foreground="White">
@@ -66,11 +166,14 @@
                             <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=DateOrderClosing}" Width="*"/>
                             <DataGridTextColumn Header="Сумма" Binding="{Binding Path=OrderPrice}" Width="*"/>
                             <DataGridTextColumn Header="Время выполнения" Binding="{Binding Path=LeadTime}" Width="*"/>
-                            <!--<DataGridComboBoxColumn Header="Авто"
-                                SelectedValueBinding="{Binding Orders}"
-                                SelectedValuePath="ID_car"
-                                DisplayMemberPath="Mark"
-                                ItemsSource="{Binding RelativeSource={RelativeSource Findancestor, AncestorType={x:Type Window}}, Path=Cars}" />-->
+                            <DataGridTemplateColumn Header="Автомобили">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Path=Cars}" DisplayMemberPath="Mark"
+                                                  Foreground="White"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

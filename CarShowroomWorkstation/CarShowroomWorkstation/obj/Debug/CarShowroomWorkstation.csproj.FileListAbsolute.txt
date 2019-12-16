@@ -62,3 +62,4 @@ C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroo
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\EditingManagerWindow.g.cs
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\EditingManagerWindow.baml
 C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\CarShowroomWorkstation.exe.config
+C:\Users\Sergey\Desktop\CarShowroomWorkstation\CarShowroomWorkstation\CarShowroomWorkstation\obj\Debug\StylesFolder\BrushesStyle.baml

@@ -26,6 +26,7 @@ namespace CarShowroomWorkstation.MVVM
         private Clients _selectedClient;
         private Orders _selectedOrder;
         private Cars _selectedCars;
+        private Cars _selectedInOrderCar;
 
         private string carsTextChanged;
         private string clientsTextChanged;
@@ -314,6 +315,16 @@ namespace CarShowroomWorkstation.MVVM
             {
                 _selectedCars = value;
                 OnPropertyChanged("SelectedCar");
+            }
+        }
+
+        public Cars SelectedInOrderCar
+        {
+            get { return _selectedInOrderCar; }
+            set
+            {
+                _selectedInOrderCar = value;
+                OnPropertyChanged("SelectedInOrderCar");
             }
         }
 

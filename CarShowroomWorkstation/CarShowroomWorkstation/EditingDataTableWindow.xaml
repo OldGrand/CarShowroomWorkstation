@@ -134,9 +134,9 @@
                                 <DataGridTextColumn Header="Модель" Binding="{Binding Path=Model}" Width="*"/>
                                 <DataGridTextColumn Header="Мощность" Binding="{Binding Path=Horsepower}" Width="*"/>
                                 <DataGridTextColumn Header="Дата выпуска" Binding="{Binding Path=YearOfIssue}" Width="*"/>
-                                <DataGridTextColumn Header="Продано" Binding="{Binding Path=IsSold}" Width="*"/>
+                                <!--<DataGridTextColumn Header="Продано" Binding="{Binding Path=IsSold}" Width="*"/>-->
                                 <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="*"/>
-                                <DataGridTextColumn Header="Заказчик" Binding="{Binding Path=Orders.Clients.Surname}" Width="*"/>
+                                <!--<DataGridTextColumn Header="Заказчик" Binding="{Binding Path=Orders.Clients.Surname}" Width="*"/>-->
                             </DataGrid.Columns>
                         </DataGrid>
                     </WrapPanel>
